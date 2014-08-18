@@ -1,0 +1,2891 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NNWebDBContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OA_Cooperates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="GetTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="IsRead" Type="bit" />
+          <Property Name="Project_ID" Type="int" />
+          <Property Name="Staff_ID" Type="int" />
+          <Property Name="Dept_ID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OA_Reads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsRead" Type="bit" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Receive_ID" Type="int" />
+          <Property Name="Staff_ID" Type="int" />
+          <Property Name="Dept_ID" Type="int" />
+          <Property Name="OldSystemId" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="OA_Receives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="OfficeSerial" Type="nvarchar" MaxLength="100" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Emergency" Type="nvarchar" MaxLength="10" />
+          <Property Name="Department" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Staff_ID" Type="int" />
+          <Property Name="GetDate" Type="datetime" />
+          <Property Name="KeyWords" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostilDate" Type="datetime" />
+          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="DealType" Type="nvarchar" MaxLength="20" />
+          <Property Name="MainDept" Type="nvarchar" MaxLength="60" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="400" />
+          <Property Name="PrimaryAttitude" Type="nvarchar(max)" />
+          <Property Name="PrimaryDept_ID" Type="int" />
+          <Property Name="PrimaryStaff_ID" Type="int" />
+          <Property Name="PrimaryDate" Type="datetime" />
+          <Property Name="DealAttitude" Type="nvarchar(max)" />
+          <Property Name="DealDept_ID" Type="int" />
+          <Property Name="DealStaff_ID" Type="int" />
+          <Property Name="DealDate" Type="datetime" />
+          <Property Name="ResultAttitude" Type="nvarchar(max)" />
+          <Property Name="ResultDept_ID" Type="int" />
+          <Property Name="ResultStaff_ID" Type="int" />
+          <Property Name="ResultDate" Type="datetime" />
+          <Property Name="IsArchives" Type="bit" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OldSystemId" Type="nvarchar" MaxLength="20" />
+          <Property Name="LeaderAttitude" Type="nvarchar(max)" />
+          <Property Name="LeaderDept_ID" Type="int" />
+          <Property Name="Leader_ID" Type="int" />
+          <Property Name="LeaderDate" Type="datetime" />
+          <Property Name="PrimaryAttitudeCheck" Type="nvarchar(max)" />
+          <Property Name="PrimaryCheckDept_ID" Type="int" />
+          <Property Name="PrimaryCheckStaff_ID" Type="int" />
+          <Property Name="PrimaryDateCheck" Type="datetime" />
+          <Property Name="PrimaryAttitudeExamine" Type="nvarchar(max)" />
+          <Property Name="PrimaryExamineDept_ID" Type="int" />
+          <Property Name="PrimaryExamineStaff_ID" Type="int" />
+          <Property Name="PrimaryDateExamine" Type="datetime" />
+          <Property Name="CommitValue" Type="nvarchar(max)" />
+          <Property Name="IsHasten" Type="bit" />
+        </EntityType>
+        <EntityType Name="OA_Sends">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="OfficeSerial" Type="nvarchar" MaxLength="100" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="IsOpen" Type="bit" />
+          <Property Name="Secret" Type="nvarchar" MaxLength="10" />
+          <Property Name="Department" Type="nvarchar(max)" />
+          <Property Name="SignDate" Type="datetime" />
+          <Property Name="AttituderName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PrintDate" Type="datetime" />
+          <Property Name="KeyWords" Type="nvarchar" MaxLength="100" />
+          <Property Name="CopyDepartment" Type="nvarchar(max)" />
+          <Property Name="CopyNotice" Type="nvarchar(max)" />
+          <Property Name="Attitude" Type="nvarchar(max)" />
+          <Property Name="PrintCount" Type="int" />
+          <Property Name="LeaderAttitude" Type="nvarchar(max)" />
+          <Property Name="LeaderStaffName" Type="nvarchar(max)" />
+          <Property Name="LeaderStaffDate" Type="datetime" />
+          <Property Name="SignAttitude" Type="nvarchar(max)" />
+          <Property Name="Staff_ID" Type="int" />
+          <Property Name="StaffDept_ID" Type="int" />
+          <Property Name="CheckStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="IsArchives" Type="bit" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OldSystemId" Type="nvarchar" MaxLength="20" />
+          <Property Name="TemplateType_ID" Type="int" />
+          <Property Name="DeptAttitude" Type="nvarchar(max)" />
+          <Property Name="DeptStaffName" Type="nvarchar(max)" />
+          <Property Name="DeptStaffDate" Type="datetime" />
+          <Property Name="CollateStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PrintStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="SealStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ScanStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="AuditorStaffName" Type="nvarchar" MaxLength="20" />
+          <Property Name="CheckAttitude" Type="nvarchar(max)" />
+          <Property Name="CheckDate" Type="datetime" />
+          <Property Name="AuditorAttitude" Type="nvarchar(max)" />
+          <Property Name="AuditorDate" Type="datetime" />
+          <Property Name="RetractPrintCount" Type="int" />
+          <Property Name="RetractDescription" Type="nvarchar(max)" />
+          <Property Name="RetractStaffId" Type="int" />
+          <Property Name="RetractDate" Type="datetime" />
+          <Property Name="RetractDeptAttitude" Type="nvarchar(max)" />
+          <Property Name="RetractDeptLeader" Type="nvarchar(max)" />
+          <Property Name="RetractDeptLeaderDate" Type="datetime" />
+          <Property Name="RetractAttitude" Type="nvarchar" MaxLength="20" />
+          <Property Name="RetractAttitudeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="RetractAttitudeDate" Type="datetime" />
+          <Property Name="RetractRemark" Type="nvarchar(max)" />
+          <Property Name="CollateDate" Type="datetime" />
+          <Property Name="DeptCheckAttitude" Type="nvarchar(max)" />
+          <Property Name="DeptCheckStaffName" Type="nvarchar(max)" />
+          <Property Name="DeptCheckStaffDate" Type="datetime" />
+          <Property Name="Public" Type="nvarchar(max)" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“NNWebDBContext.dbo.OA_Signatures”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="OA_Signatures">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IsRead" />
+            <PropertyRef Name="Receive_ID" />
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Receive_ID" Type="int" Nullable="false" />
+          <Property Name="Staff_ID" Type="int" Nullable="false" />
+          <Property Name="OldSystemId" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="OG_Depts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="Order" Type="int" />
+          <Property Name="IsMain" Type="bit" Nullable="false" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="50" />
+          <Property Name="RootId" Type="int" Nullable="false" />
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="IsSubMain" Type="bit" Nullable="false" />
+          <Property Name="IsLeader" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OG_DeptStaffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Master" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="smallint" Nullable="false" />
+          <Property Name="Dept_ID" Type="int" Nullable="false" />
+          <Property Name="Staff_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OG_Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="IsShare" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OG_RoleStaffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order" Type="smallint" Nullable="false" />
+          <Property Name="Role_ID" Type="int" Nullable="false" />
+          <Property Name="Staff_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OG_Staffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Order" Type="int" />
+          <Property Name="LogName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="32" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="2" />
+          <Property Name="Blood" Type="nvarchar" MaxLength="10" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Province" Type="nvarchar" MaxLength="30" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="30" />
+          <Property Name="HideMap" Type="bit" Nullable="false" />
+          <Property Name="HideSearch" Type="bit" Nullable="false" />
+          <Property Name="Duty" Type="nvarchar" MaxLength="20" />
+          <Property Name="PicName" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsPermiss" Type="bit" Nullable="false" />
+          <Property Name="IsMaster" Type="bit" Nullable="false" />
+          <Property Name="IsSubMaster" Type="bit" Nullable="false" />
+          <Property Name="IsMultiSign" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OG_Usrs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="OldId" Type="nvarchar" MaxLength="50" />
+          <Property Name="District_ID" Type="int" />
+          <Property Name="AppName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuId" Type="int" />
+          <Property Name="UserUniqueKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“NNWebDBContext.dbo.S_Annexs”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="S_Annexs">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Size" />
+            <PropertyRef Name="HasRevision" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Extended" Type="nvarchar" MaxLength="20" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Path" Type="nvarchar" MaxLength="200" />
+          <Property Name="Order" Type="int" />
+          <Property Name="SystemType" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="S_Project_ID" Type="int" />
+          <Property Name="CreatorId" Type="int" />
+          <Property Name="MarkCode" Type="nvarchar(max)" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="FKTable" Type="nvarchar" MaxLength="20" />
+          <Property Name="FKValue" Type="int" />
+          <Property Name="HasRevision" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_ExpandValues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FieldName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KeyId" Type="int" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="DeptId" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="EndTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="S_Processes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Content2" Type="nvarchar(max)" />
+          <Property Name="Version" Type="nvarchar(max)" />
+          <Property Name="Activate" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatorId" Type="int" Nullable="false" />
+          <Property Name="LastEditorId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Update" Type="datetime" Nullable="false" />
+          <Property Name="StartFormId" Type="int" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ProcessTypeId" Type="int" Nullable="false" />
+          <Property Name="IsMustRelation" Type="bit" Nullable="false" />
+          <Property Name="IsOARelation" Type="bit" Nullable="false" />
+          <Property Name="IsSimpleRelation" Type="bit" Nullable="false" />
+          <Property Name="PrivateMainDept_ID" Type="int" />
+          <Property Name="TimeLimitType" Type="int" Nullable="false" />
+          <Property Name="TimeLimit" Type="int" Nullable="false" />
+          <Property Name="IsFullForm" Type="bit" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar(max)" />
+          <Property Name="IsPermission" Type="bit" Nullable="false" />
+          <Property Name="IsSpecial" Type="bit" Nullable="false" />
+          <Property Name="SpecialType" Type="int" Nullable="false" />
+          <Property Name="IsBatch" Type="bit" Nullable="false" />
+          <Property Name="RelFindField" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="S_ProjectBases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Sponsor" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProjectNo" Type="nvarchar" MaxLength="12" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" />
+          <Property Name="ContextPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContextMobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContextPersonalID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProjectAddress" Type="nvarchar(max)" />
+          <Property Name="ArtificialPerson" Type="nvarchar" MaxLength="20" />
+          <Property Name="ArtificialPersonID" Type="nvarchar" MaxLength="30" />
+          <Property Name="DeputyPerson" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeputyPersonID" Type="nvarchar" MaxLength="30" />
+          <Property Name="GetAddress" Type="nvarchar(max)" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArchiveId" Type="int" />
+          <Property Name="ProcessName" Type="nvarchar(max)" />
+          <Property Name="DeputyPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="S_ProjectItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="SignDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="PrevStaffId" Type="int" Nullable="false" />
+          <Property Name="Finished" Type="bit" Nullable="false" />
+          <Property Name="StatusValue" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="250" />
+          <Property Name="CurStaffId" Type="int" Nullable="false" />
+          <Property Name="CurActionId" Type="int" Nullable="false" />
+          <Property Name="PrevActionId" Type="int" Nullable="false" />
+          <Property Name="PrevItem_ID" Type="int" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusValue" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatorId" Type="int" Nullable="false" />
+          <Property Name="IsUrge" Type="bit" Nullable="false" />
+          <Property Name="UrgeLimit" Type="int" />
+          <Property Name="UrgeMaxDate" Type="datetime" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="DeleteRemark" Type="nvarchar(max)" />
+          <Property Name="SearchPassword" Type="nvarchar" MaxLength="6" />
+          <Property Name="PromisesDays" Type="int" />
+          <Property Name="ExpectDate" Type="datetime" />
+          <Property Name="IsHistory" Type="bit" Nullable="false" />
+          <Property Name="CreatorPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="BuildupId" Type="int" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="LockReason" Type="nvarchar(max)" />
+          <Property Name="IsRetract" Type="bit" Nullable="false" />
+          <Property Name="MeetingType" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Cooperates" Type="Self.OA_Cooperates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Cooperates">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Cooperates" Type="Self.OA_Cooperates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Cooperates">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID">
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Receive_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="DealDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="LeaderDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryCheckDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryExamineDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ResultDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="DealStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="Leader_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryCheckStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryExamineStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ResultStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="StaffDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="RetractStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID">
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="1" />
+          <End Role="OA_Signatures" Type="Self.OA_Signatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Signatures">
+              <PropertyRef Name="Receive_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OA_Signatures" Type="Self.OA_Signatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Signatures">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OG_Depts1" Type="Self.OG_Depts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Depts1">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Depts_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="1" />
+          <End Role="OG_DeptStaffs" Type="Self.OG_DeptStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_DeptStaffs">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OG_DeptStaffs" Type="Self.OG_DeptStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_DeptStaffs">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID">
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="0..1" />
+          <End Role="OG_Roles1" Type="Self.OG_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Roles1">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Roles_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID">
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="1" />
+          <End Role="OG_RoleStaffs" Type="Self.OG_RoleStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_RoleStaffs">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OG_RoleStaffs" Type="Self.OG_RoleStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_RoleStaffs">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="0..1" />
+          <End Role="S_Annexs" Type="Self.S_Annexs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Annexs">
+              <PropertyRef Name="S_Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="1" />
+          <End Role="S_ExpandValues" Type="Self.S_ExpandValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ExpandValues">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_ExpandValues" Type="Self.S_ExpandValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ExpandValues">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="PrivateMainDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="LastEditorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_S_Processes_ParentId">
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="0..1" />
+          <End Role="S_Processes1" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Processes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectBases_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="S_ProjectBases" Type="Self.S_ProjectBases" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectBases">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="PrevStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="CurStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID">
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="0..1" />
+          <End Role="S_ProjectItems1" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_ProjectItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems1">
+              <PropertyRef Name="PrevItem_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Projects">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Projects_dbo_S_Processes_ProcessId">
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="1" />
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Processes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Projects">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NNWebDBContextModelStoreContainer">
+          <EntitySet Name="OA_Cooperates" EntityType="Self.OA_Cooperates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OA_Reads" EntityType="Self.OA_Reads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OA_Receives" EntityType="Self.OA_Receives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OA_Sends" EntityType="Self.OA_Sends" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_Depts" EntityType="Self.OG_Depts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_DeptStaffs" EntityType="Self.OG_DeptStaffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_Roles" EntityType="Self.OG_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_RoleStaffs" EntityType="Self.OG_RoleStaffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_Staffs" EntityType="Self.OG_Staffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OG_Usrs" EntityType="Self.OG_Usrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ExpandValues" EntityType="Self.S_ExpandValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Processes" EntityType="Self.S_Processes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ProjectBases" EntityType="Self.S_ProjectBases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ProjectItems" EntityType="Self.S_ProjectItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Projects" EntityType="Self.S_Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OA_Signatures" EntityType="Self.OA_Signatures" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OA_Signatures].[ID] AS [ID], 
+    [OA_Signatures].[IsRead] AS [IsRead], 
+    [OA_Signatures].[Time] AS [Time], 
+    [OA_Signatures].[Content] AS [Content], 
+    [OA_Signatures].[Receive_ID] AS [Receive_ID], 
+    [OA_Signatures].[Staff_ID] AS [Staff_ID], 
+    [OA_Signatures].[OldSystemId] AS [OldSystemId]
+    FROM [dbo].[OA_Signatures] AS [OA_Signatures]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="S_Annexs" EntityType="Self.S_Annexs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [S_Annexs].[ID] AS [ID], 
+    [S_Annexs].[Type] AS [Type], 
+    [S_Annexs].[Name] AS [Name], 
+    [S_Annexs].[Extended] AS [Extended], 
+    [S_Annexs].[Creator] AS [Creator], 
+    [S_Annexs].[CreateTime] AS [CreateTime], 
+    [S_Annexs].[Path] AS [Path], 
+    [S_Annexs].[Order] AS [Order], 
+    [S_Annexs].[SystemType] AS [SystemType], 
+    [S_Annexs].[IsDeleted] AS [IsDeleted], 
+    [S_Annexs].[S_Project_ID] AS [S_Project_ID], 
+    [S_Annexs].[CreatorId] AS [CreatorId], 
+    [S_Annexs].[MarkCode] AS [MarkCode], 
+    [S_Annexs].[Size] AS [Size], 
+    [S_Annexs].[Url] AS [Url], 
+    [S_Annexs].[FKTable] AS [FKTable], 
+    [S_Annexs].[FKValue] AS [FKValue], 
+    [S_Annexs].[HasRevision] AS [HasRevision]
+    FROM [dbo].[S_Annexs] AS [S_Annexs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Cooperates" EntitySet="OA_Cooperates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Cooperates" EntitySet="OA_Cooperates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID" Association="Self.FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID">
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_S_Projects_ID" Association="Self.FK_dbo_OA_Receives_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" Association="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" Association="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_S_Projects_ID" Association="Self.FK_dbo_OA_Sends_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" Association="Self.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID">
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+            <End Role="OA_Signatures" EntitySet="OA_Signatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Signatures" EntitySet="OA_Signatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID" Association="Self.FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OG_Depts1" EntitySet="OG_Depts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Depts_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Depts_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OG_DeptStaffs" EntitySet="OG_DeptStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OG_DeptStaffs" EntitySet="OG_DeptStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID" Association="Self.FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID">
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+            <End Role="OG_Roles1" EntitySet="OG_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Roles_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Roles_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" Association="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID">
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+            <End Role="OG_RoleStaffs" EntitySet="OG_RoleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OG_RoleStaffs" EntitySet="OG_RoleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID" Association="Self.FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_Annexs" EntitySet="S_Annexs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId" Association="Self.FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="S_ExpandValues" EntitySet="S_ExpandValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" Association="Self.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_ExpandValues" EntitySet="S_ExpandValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID" Association="Self.FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" Association="Self.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" Association="Self.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_S_Processes_ParentId" Association="Self.FK_dbo_S_Processes_dbo_S_Processes_ParentId">
+            <End Role="S_Processes" EntitySet="S_Processes" />
+            <End Role="S_Processes1" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectBases_dbo_S_Projects_ID" Association="Self.FK_dbo_S_ProjectBases_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_ProjectBases" EntitySet="S_ProjectBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId" Association="Self.FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId" Association="Self.FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID" Association="Self.FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID">
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+            <End Role="S_ProjectItems1" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId" Association="Self.FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId" Association="Self.FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="S_Projects" EntitySet="S_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Projects_dbo_S_Processes_ProcessId" Association="Self.FK_dbo_S_Projects_dbo_S_Processes_ProcessId">
+            <End Role="S_Processes" EntitySet="S_Processes" />
+            <End Role="S_Projects" EntitySet="S_Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NNWebDBContextModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="OA_Cooperates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GetTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="IsRead" Type="Boolean" />
+          <Property Name="Project_ID" Type="Int32" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <Property Name="Dept_ID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID" FromRole="OA_Cooperates" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID" FromRole="OA_Cooperates" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="OA_Reads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsRead" Type="Boolean" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Receive_ID" Type="Int32" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <Property Name="Dept_ID" Type="Int32" />
+          <Property Name="OldSystemId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OA_Receives" Relationship="Self.FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID" FromRole="OA_Reads" ToRole="OA_Receives" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID" FromRole="OA_Reads" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID" FromRole="OA_Reads" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="OA_Receives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="OfficeSerial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Emergency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <Property Name="GetDate" Type="DateTime" Precision="3" />
+          <Property Name="KeyWords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostilDate" Type="DateTime" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="DealType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MainDept" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryDept_ID" Type="Int32" />
+          <Property Name="PrimaryStaff_ID" Type="Int32" />
+          <Property Name="PrimaryDate" Type="DateTime" Precision="3" />
+          <Property Name="DealAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DealDept_ID" Type="Int32" />
+          <Property Name="DealStaff_ID" Type="Int32" />
+          <Property Name="DealDate" Type="DateTime" Precision="3" />
+          <Property Name="ResultAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResultDept_ID" Type="Int32" />
+          <Property Name="ResultStaff_ID" Type="Int32" />
+          <Property Name="ResultDate" Type="DateTime" Precision="3" />
+          <Property Name="IsArchives" Type="Boolean" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OldSystemId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderDept_ID" Type="Int32" />
+          <Property Name="Leader_ID" Type="Int32" />
+          <Property Name="LeaderDate" Type="DateTime" Precision="3" />
+          <Property Name="PrimaryAttitudeCheck" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryCheckDept_ID" Type="Int32" />
+          <Property Name="PrimaryCheckStaff_ID" Type="Int32" />
+          <Property Name="PrimaryDateCheck" Type="DateTime" Precision="3" />
+          <Property Name="PrimaryAttitudeExamine" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryExamineDept_ID" Type="Int32" />
+          <Property Name="PrimaryExamineStaff_ID" Type="Int32" />
+          <Property Name="PrimaryDateExamine" Type="DateTime" Precision="3" />
+          <Property Name="CommitValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHasten" Type="Boolean" />
+          <NavigationProperty Name="OA_Reads" Relationship="Self.FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID" FromRole="OA_Receives" ToRole="OA_Reads" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Depts1" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Depts2" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Depts3" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Depts4" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Depts5" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID" FromRole="OA_Receives" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs1" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs2" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs3" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs4" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs5" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs6" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_OA_Receives_dbo_S_Projects_ID" FromRole="OA_Receives" ToRole="S_Projects" />
+          <NavigationProperty Name="OA_Signatures" Relationship="Self.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" FromRole="OA_Receives" ToRole="OA_Signatures" />
+        </EntityType>
+        <EntityType Name="OA_Sends">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="OfficeSerial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsOpen" Type="Boolean" />
+          <Property Name="Secret" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SignDate" Type="DateTime" Precision="3" />
+          <Property Name="AttituderName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PrintDate" Type="DateTime" Precision="3" />
+          <Property Name="KeyWords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CopyDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CopyNotice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Attitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrintCount" Type="Int32" />
+          <Property Name="LeaderAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderStaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderStaffDate" Type="DateTime" Precision="3" />
+          <Property Name="SignAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <Property Name="StaffDept_ID" Type="Int32" />
+          <Property Name="CheckStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsArchives" Type="Boolean" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OldSystemId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateType_ID" Type="Int32" />
+          <Property Name="DeptAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeptStaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeptStaffDate" Type="DateTime" Precision="3" />
+          <Property Name="CollateStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PrintStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SealStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ScanStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AuditorStaffName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CheckAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckDate" Type="DateTime" Precision="3" />
+          <Property Name="AuditorAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuditorDate" Type="DateTime" Precision="3" />
+          <Property Name="RetractPrintCount" Type="Int32" />
+          <Property Name="RetractDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RetractStaffId" Type="Int32" />
+          <Property Name="RetractDate" Type="DateTime" Precision="3" />
+          <Property Name="RetractDeptAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RetractDeptLeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RetractDeptLeaderDate" Type="DateTime" Precision="3" />
+          <Property Name="RetractAttitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RetractAttitudeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RetractAttitudeDate" Type="DateTime" Precision="3" />
+          <Property Name="RetractRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CollateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeptCheckAttitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeptCheckStaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeptCheckStaffDate" Type="DateTime" Precision="3" />
+          <Property Name="Public" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" FromRole="OA_Sends" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" FromRole="OA_Sends" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs1" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" FromRole="OA_Sends" ToRole="OG_Staffs" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_OA_Sends_dbo_S_Projects_ID" FromRole="OA_Sends" ToRole="S_Projects" />
+        </EntityType>
+        <EntityType Name="OG_Depts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="IsMain" Type="Boolean" Nullable="false" />
+          <Property Name="HomePage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RootId" Type="Int32" Nullable="false" />
+          <Property Name="Parent_ID" Type="Int32" />
+          <Property Name="IsSubMain" Type="Boolean" Nullable="false" />
+          <Property Name="IsLeader" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OA_Cooperates" Relationship="Self.FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID" FromRole="OG_Depts" ToRole="OA_Cooperates" />
+          <NavigationProperty Name="OA_Reads" Relationship="Self.FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID" FromRole="OG_Depts" ToRole="OA_Reads" />
+          <NavigationProperty Name="OA_Receives" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives1" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives2" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives3" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives4" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives5" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID" FromRole="OG_Depts" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Sends" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" FromRole="OG_Depts" ToRole="OA_Sends" />
+          <NavigationProperty Name="OG_Depts1" Relationship="Self.FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID" FromRole="OG_Depts" ToRole="OG_Depts1" />
+          <NavigationProperty Name="OG_Depts2" Relationship="Self.FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID" FromRole="OG_Depts1" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Usrs" Relationship="Self.FK_dbo_OG_Depts_dbo_OG_Usrs_ID" FromRole="OG_Depts" ToRole="OG_Usrs" />
+          <NavigationProperty Name="OG_DeptStaffs" Relationship="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID" FromRole="OG_Depts" ToRole="OG_DeptStaffs" />
+          <NavigationProperty Name="S_ExpandValues" Relationship="Self.FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId" FromRole="OG_Depts" ToRole="S_ExpandValues" />
+          <NavigationProperty Name="S_Processes" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID" FromRole="OG_Depts" ToRole="S_Processes" />
+        </EntityType>
+        <EntityType Name="OG_DeptStaffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Master" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Int16" Nullable="false" />
+          <Property Name="Dept_ID" Type="Int32" Nullable="false" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID" FromRole="OG_DeptStaffs" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID" FromRole="OG_DeptStaffs" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="OG_Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_ID" Type="Int32" />
+          <Property Name="IsShare" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OG_Roles1" Relationship="Self.FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID" FromRole="OG_Roles" ToRole="OG_Roles1" />
+          <NavigationProperty Name="OG_Roles2" Relationship="Self.FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID" FromRole="OG_Roles1" ToRole="OG_Roles" />
+          <NavigationProperty Name="OG_Usrs" Relationship="Self.FK_dbo_OG_Roles_dbo_OG_Usrs_ID" FromRole="OG_Roles" ToRole="OG_Usrs" />
+          <NavigationProperty Name="OG_RoleStaffs" Relationship="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" FromRole="OG_Roles" ToRole="OG_RoleStaffs" />
+        </EntityType>
+        <EntityType Name="OG_RoleStaffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order" Type="Int16" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OG_Roles" Relationship="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" FromRole="OG_RoleStaffs" ToRole="OG_Roles" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" FromRole="OG_RoleStaffs" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="OG_Staffs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="LogName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Blood" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qualification" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="HideMap" Type="Boolean" Nullable="false" />
+          <Property Name="HideSearch" Type="Boolean" Nullable="false" />
+          <Property Name="Duty" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PicName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsPermiss" Type="Boolean" Nullable="false" />
+          <Property Name="IsMaster" Type="Boolean" Nullable="false" />
+          <Property Name="IsSubMaster" Type="Boolean" Nullable="false" />
+          <Property Name="IsMultiSign" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OA_Cooperates" Relationship="Self.FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OA_Cooperates" />
+          <NavigationProperty Name="OA_Reads" Relationship="Self.FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OA_Reads" />
+          <NavigationProperty Name="OA_Receives" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives1" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives2" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives3" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives4" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives5" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Receives6" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Sends" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" FromRole="OG_Staffs" ToRole="OA_Sends" />
+          <NavigationProperty Name="OA_Sends1" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OA_Sends" />
+          <NavigationProperty Name="OG_DeptStaffs" Relationship="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OG_DeptStaffs" />
+          <NavigationProperty Name="OG_RoleStaffs" Relationship="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OG_RoleStaffs" />
+          <NavigationProperty Name="OA_Signatures" Relationship="Self.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" FromRole="OG_Staffs" ToRole="OA_Signatures" />
+          <NavigationProperty Name="OG_Usrs" Relationship="Self.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" FromRole="OG_Staffs" ToRole="OG_Usrs" />
+          <NavigationProperty Name="S_ExpandValues" Relationship="Self.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" FromRole="OG_Staffs" ToRole="S_ExpandValues" />
+          <NavigationProperty Name="S_Processes" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" FromRole="OG_Staffs" ToRole="S_Processes" />
+          <NavigationProperty Name="S_Processes1" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" FromRole="OG_Staffs" ToRole="S_Processes" />
+          <NavigationProperty Name="S_ProjectItems" Relationship="Self.FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId" FromRole="OG_Staffs" ToRole="S_ProjectItems" />
+        </EntityType>
+        <EntityType Name="OG_Usrs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="OldId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District_ID" Type="Int32" />
+          <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuId" Type="Int32" />
+          <Property Name="UserUniqueKey" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OG_Depts_dbo_OG_Usrs_ID" FromRole="OG_Usrs" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Roles" Relationship="Self.FK_dbo_OG_Roles_dbo_OG_Usrs_ID" FromRole="OG_Usrs" ToRole="OG_Roles" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" FromRole="OG_Usrs" ToRole="OG_Staffs" />
+          <NavigationProperty Name="S_ProjectItems" Relationship="Self.FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId" FromRole="OG_Usrs" ToRole="S_ProjectItems" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId" FromRole="OG_Usrs" ToRole="S_Projects" />
+        </EntityType>
+        <EntityType Name="S_ExpandValues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="DeptId" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId" FromRole="S_ExpandValues" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" FromRole="S_ExpandValues" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="S_Processes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activate" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatorId" Type="Int32" Nullable="false" />
+          <Property Name="LastEditorId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Update" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartFormId" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ProcessTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsMustRelation" Type="Boolean" Nullable="false" />
+          <Property Name="IsOARelation" Type="Boolean" Nullable="false" />
+          <Property Name="IsSimpleRelation" Type="Boolean" Nullable="false" />
+          <Property Name="PrivateMainDept_ID" Type="Int32" />
+          <Property Name="TimeLimitType" Type="Int32" Nullable="false" />
+          <Property Name="TimeLimit" Type="Int32" Nullable="false" />
+          <Property Name="IsFullForm" Type="Boolean" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPermission" Type="Boolean" Nullable="false" />
+          <Property Name="IsSpecial" Type="Boolean" Nullable="false" />
+          <Property Name="SpecialType" Type="Int32" Nullable="false" />
+          <Property Name="IsBatch" Type="Boolean" Nullable="false" />
+          <Property Name="RelFindField" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID" FromRole="S_Processes" ToRole="OG_Depts" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" FromRole="S_Processes" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Staffs1" Relationship="Self.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" FromRole="S_Processes" ToRole="OG_Staffs" />
+          <NavigationProperty Name="S_Processes1" Relationship="Self.FK_dbo_S_Processes_dbo_S_Processes_ParentId" FromRole="S_Processes" ToRole="S_Processes1" />
+          <NavigationProperty Name="S_Processes2" Relationship="Self.FK_dbo_S_Processes_dbo_S_Processes_ParentId" FromRole="S_Processes1" ToRole="S_Processes" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_S_Projects_dbo_S_Processes_ProcessId" FromRole="S_Processes" ToRole="S_Projects" />
+        </EntityType>
+        <EntityType Name="S_ProjectBases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sponsor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContextPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContextMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContextPersonalID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArtificialPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ArtificialPersonID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DeputyPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeputyPersonID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArchiveId" Type="Int32" />
+          <Property Name="ProcessName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeputyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_S_ProjectBases_dbo_S_Projects_ID" FromRole="S_ProjectBases" ToRole="S_Projects" />
+        </EntityType>
+        <EntityType Name="S_ProjectItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SignDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="PrevStaffId" Type="Int32" Nullable="false" />
+          <Property Name="Finished" Type="Boolean" Nullable="false" />
+          <Property Name="StatusValue" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CurStaffId" Type="Int32" Nullable="false" />
+          <Property Name="CurActionId" Type="Int32" Nullable="false" />
+          <Property Name="PrevActionId" Type="Int32" Nullable="false" />
+          <Property Name="PrevItem_ID" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId" FromRole="S_ProjectItems" ToRole="OG_Staffs" />
+          <NavigationProperty Name="OG_Usrs" Relationship="Self.FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId" FromRole="S_ProjectItems" ToRole="OG_Usrs" />
+          <NavigationProperty Name="S_ProjectItems1" Relationship="Self.FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID" FromRole="S_ProjectItems" ToRole="S_ProjectItems1" />
+          <NavigationProperty Name="S_ProjectItems2" Relationship="Self.FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID" FromRole="S_ProjectItems1" ToRole="S_ProjectItems" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId" FromRole="S_ProjectItems" ToRole="S_Projects" />
+        </EntityType>
+        <EntityType Name="S_Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusValue" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatorId" Type="Int32" Nullable="false" />
+          <Property Name="IsUrge" Type="Boolean" Nullable="false" />
+          <Property Name="UrgeLimit" Type="Int32" />
+          <Property Name="UrgeMaxDate" Type="DateTime" Precision="3" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="DeleteRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SearchPassword" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="PromisesDays" Type="Int32" />
+          <Property Name="ExpectDate" Type="DateTime" Precision="3" />
+          <Property Name="IsHistory" Type="Boolean" Nullable="false" />
+          <Property Name="CreatorPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="BuildupId" Type="Int32" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="LockReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRetract" Type="Boolean" Nullable="false" />
+          <Property Name="MeetingType" Type="Int32" />
+          <NavigationProperty Name="OA_Receives" Relationship="Self.FK_dbo_OA_Receives_dbo_S_Projects_ID" FromRole="S_Projects" ToRole="OA_Receives" />
+          <NavigationProperty Name="OA_Sends" Relationship="Self.FK_dbo_OA_Sends_dbo_S_Projects_ID" FromRole="S_Projects" ToRole="OA_Sends" />
+          <NavigationProperty Name="OG_Usrs" Relationship="Self.FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId" FromRole="S_Projects" ToRole="OG_Usrs" />
+          <NavigationProperty Name="S_Processes" Relationship="Self.FK_dbo_S_Projects_dbo_S_Processes_ProcessId" FromRole="S_Projects" ToRole="S_Processes" />
+          <NavigationProperty Name="S_ProjectBases" Relationship="Self.FK_dbo_S_ProjectBases_dbo_S_Projects_ID" FromRole="S_Projects" ToRole="S_ProjectBases" />
+          <NavigationProperty Name="S_ProjectItems" Relationship="Self.FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId" FromRole="S_Projects" ToRole="S_ProjectItems" />
+          <NavigationProperty Name="S_Annexs" Relationship="Self.FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID" FromRole="S_Projects" ToRole="S_Annexs" />
+        </EntityType>
+        <EntityType Name="OA_Signatures">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IsRead" />
+            <PropertyRef Name="Receive_ID" />
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Receive_ID" Type="Int32" Nullable="false" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <Property Name="OldSystemId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OA_Receives" Relationship="Self.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" FromRole="OA_Signatures" ToRole="OA_Receives" />
+          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" FromRole="OA_Signatures" ToRole="OG_Staffs" />
+        </EntityType>
+        <EntityType Name="S_Annexs">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Size" />
+            <PropertyRef Name="HasRevision" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Extended" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="SystemType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="S_Project_ID" Type="Int32" />
+          <Property Name="CreatorId" Type="Int32" />
+          <Property Name="MarkCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FKTable" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FKValue" Type="Int32" />
+          <Property Name="HasRevision" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID" FromRole="S_Annexs" ToRole="S_Projects" />
+        </EntityType>
+        <Association Name="FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Cooperates" Type="Self.OA_Cooperates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Cooperates">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Cooperates" Type="Self.OA_Cooperates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Cooperates">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID">
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Receive_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Reads" Type="Self.OA_Reads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Reads">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="DealDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="LeaderDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryCheckDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryExamineDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ResultDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="DealStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="Leader_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryCheckStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryExamineStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="PrimaryStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ResultStaff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Receives_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID">
+          <End Role="OA_Receives" Type="Self.OA_Receives" Multiplicity="1" />
+          <End Role="OA_Signatures" Type="Self.OA_Signatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OA_Receives">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Signatures">
+              <PropertyRef Name="Receive_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="StaffDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="RetractStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Sends_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="OA_Sends" Type="Self.OA_Sends" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Sends">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="OG_Depts1" Type="Self.OG_Depts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Depts1">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Depts_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="1" />
+          <End Role="OG_DeptStaffs" Type="Self.OG_DeptStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_DeptStaffs">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="1" />
+          <End Role="S_ExpandValues" Type="Self.S_ExpandValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ExpandValues">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID">
+          <End Role="OG_Depts" Type="Self.OG_Depts" Multiplicity="0..1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Depts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="PrivateMainDept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OG_DeptStaffs" Type="Self.OG_DeptStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_DeptStaffs">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID">
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="0..1" />
+          <End Role="OG_Roles1" Type="Self.OG_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Roles1">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Roles_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID">
+          <End Role="OG_Roles" Type="Self.OG_Roles" Multiplicity="1" />
+          <End Role="OG_RoleStaffs" Type="Self.OG_RoleStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_RoleStaffs">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OG_RoleStaffs" Type="Self.OG_RoleStaffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_RoleStaffs">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="OA_Signatures" Type="Self.OA_Signatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OA_Signatures">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_ExpandValues" Type="Self.S_ExpandValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ExpandValues">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes">
+              <PropertyRef Name="LastEditorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId">
+          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Staffs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="PrevStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="CurStaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId">
+          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OG_Usrs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Projects">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Processes_dbo_S_Processes_ParentId">
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="0..1" />
+          <End Role="S_Processes1" Type="Self.S_Processes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Processes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Processes1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Projects_dbo_S_Processes_ProcessId">
+          <End Role="S_Processes" Type="Self.S_Processes" Multiplicity="1" />
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Processes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Projects">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectBases_dbo_S_Projects_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="S_ProjectBases" Type="Self.S_ProjectBases" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectBases">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID">
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="0..1" />
+          <End Role="S_ProjectItems1" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_ProjectItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems1">
+              <PropertyRef Name="PrevItem_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="1" />
+          <End Role="S_ProjectItems" Type="Self.S_ProjectItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_ProjectItems">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID">
+          <End Role="S_Projects" Type="Self.S_Projects" Multiplicity="0..1" />
+          <End Role="S_Annexs" Type="Self.S_Annexs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="S_Annexs">
+              <PropertyRef Name="S_Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NNWebDBContextEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OA_Cooperates" EntityType="Self.OA_Cooperates" />
+          <EntitySet Name="OA_Reads" EntityType="Self.OA_Reads" />
+          <EntitySet Name="OA_Receives" EntityType="Self.OA_Receives" />
+          <EntitySet Name="OA_Sends" EntityType="Self.OA_Sends" />
+          <EntitySet Name="OG_Depts" EntityType="Self.OG_Depts" />
+          <EntitySet Name="OG_DeptStaffs" EntityType="Self.OG_DeptStaffs" />
+          <EntitySet Name="OG_Roles" EntityType="Self.OG_Roles" />
+          <EntitySet Name="OG_RoleStaffs" EntityType="Self.OG_RoleStaffs" />
+          <EntitySet Name="OG_Staffs" EntityType="Self.OG_Staffs" />
+          <EntitySet Name="OG_Usrs" EntityType="Self.OG_Usrs" />
+          <EntitySet Name="S_ExpandValues" EntityType="Self.S_ExpandValues" />
+          <EntitySet Name="S_Processes" EntityType="Self.S_Processes" />
+          <EntitySet Name="S_ProjectBases" EntityType="Self.S_ProjectBases" />
+          <EntitySet Name="S_ProjectItems" EntityType="Self.S_ProjectItems" />
+          <EntitySet Name="S_Projects" EntityType="Self.S_Projects" />
+          <EntitySet Name="OA_Signatures" EntityType="Self.OA_Signatures" />
+          <EntitySet Name="S_Annexs" EntityType="Self.S_Annexs" />
+          <AssociationSet Name="FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Cooperates" EntitySet="OA_Cooperates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Cooperates" EntitySet="OA_Cooperates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID" Association="Self.FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID">
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Reads" EntitySet="OA_Reads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Receives_dbo_S_Projects_ID" Association="Self.FK_dbo_OA_Receives_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" Association="Self.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID">
+            <End Role="OA_Receives" EntitySet="OA_Receives" />
+            <End Role="OA_Signatures" EntitySet="OA_Signatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" Association="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" Association="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Sends_dbo_S_Projects_ID" Association="Self.FK_dbo_OA_Sends_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="OA_Sends" EntitySet="OA_Sends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID" Association="Self.FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OG_Depts1" EntitySet="OG_Depts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Depts_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Depts_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID" Association="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="OG_DeptStaffs" EntitySet="OG_DeptStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId" Association="Self.FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="S_ExpandValues" EntitySet="S_ExpandValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID" Association="Self.FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID">
+            <End Role="OG_Depts" EntitySet="OG_Depts" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OG_DeptStaffs" EntitySet="OG_DeptStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID" Association="Self.FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID">
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+            <End Role="OG_Roles1" EntitySet="OG_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Roles_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Roles_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" Association="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID">
+            <End Role="OG_Roles" EntitySet="OG_Roles" />
+            <End Role="OG_RoleStaffs" EntitySet="OG_RoleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OG_RoleStaffs" EntitySet="OG_RoleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" Association="Self.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="OA_Signatures" EntitySet="OA_Signatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" Association="Self.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_ExpandValues" EntitySet="S_ExpandValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" Association="Self.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" Association="Self.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_Processes" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId" Association="Self.FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId">
+            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId" Association="Self.FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId" Association="Self.FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId">
+            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
+            <End Role="S_Projects" EntitySet="S_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Processes_dbo_S_Processes_ParentId" Association="Self.FK_dbo_S_Processes_dbo_S_Processes_ParentId">
+            <End Role="S_Processes" EntitySet="S_Processes" />
+            <End Role="S_Processes1" EntitySet="S_Processes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Projects_dbo_S_Processes_ProcessId" Association="Self.FK_dbo_S_Projects_dbo_S_Processes_ProcessId">
+            <End Role="S_Processes" EntitySet="S_Processes" />
+            <End Role="S_Projects" EntitySet="S_Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectBases_dbo_S_Projects_ID" Association="Self.FK_dbo_S_ProjectBases_dbo_S_Projects_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_ProjectBases" EntitySet="S_ProjectBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID" Association="Self.FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID">
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+            <End Role="S_ProjectItems1" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId" Association="Self.FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_ProjectItems" EntitySet="S_ProjectItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID" Association="Self.FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID">
+            <End Role="S_Projects" EntitySet="S_Projects" />
+            <End Role="S_Annexs" EntitySet="S_Annexs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NNWebDBContextModelStoreContainer" CdmEntityContainer="NNWebDBContextEntities">
+          <EntitySetMapping Name="OA_Cooperates">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OA_Cooperates">
+              <MappingFragment StoreEntitySet="OA_Cooperates">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="GetTime" ColumnName="GetTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OA_Reads">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OA_Reads">
+              <MappingFragment StoreEntitySet="OA_Reads">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Receive_ID" ColumnName="Receive_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="OldSystemId" ColumnName="OldSystemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OA_Receives">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OA_Receives">
+              <MappingFragment StoreEntitySet="OA_Receives">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OfficeSerial" ColumnName="OfficeSerial" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Emergency" ColumnName="Emergency" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="GetDate" ColumnName="GetDate" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="PostilDate" ColumnName="PostilDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="DealType" ColumnName="DealType" />
+                <ScalarProperty Name="MainDept" ColumnName="MainDept" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="PrimaryAttitude" ColumnName="PrimaryAttitude" />
+                <ScalarProperty Name="PrimaryDept_ID" ColumnName="PrimaryDept_ID" />
+                <ScalarProperty Name="PrimaryStaff_ID" ColumnName="PrimaryStaff_ID" />
+                <ScalarProperty Name="PrimaryDate" ColumnName="PrimaryDate" />
+                <ScalarProperty Name="DealAttitude" ColumnName="DealAttitude" />
+                <ScalarProperty Name="DealDept_ID" ColumnName="DealDept_ID" />
+                <ScalarProperty Name="DealStaff_ID" ColumnName="DealStaff_ID" />
+                <ScalarProperty Name="DealDate" ColumnName="DealDate" />
+                <ScalarProperty Name="ResultAttitude" ColumnName="ResultAttitude" />
+                <ScalarProperty Name="ResultDept_ID" ColumnName="ResultDept_ID" />
+                <ScalarProperty Name="ResultStaff_ID" ColumnName="ResultStaff_ID" />
+                <ScalarProperty Name="ResultDate" ColumnName="ResultDate" />
+                <ScalarProperty Name="IsArchives" ColumnName="IsArchives" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="OldSystemId" ColumnName="OldSystemId" />
+                <ScalarProperty Name="LeaderAttitude" ColumnName="LeaderAttitude" />
+                <ScalarProperty Name="LeaderDept_ID" ColumnName="LeaderDept_ID" />
+                <ScalarProperty Name="Leader_ID" ColumnName="Leader_ID" />
+                <ScalarProperty Name="LeaderDate" ColumnName="LeaderDate" />
+                <ScalarProperty Name="PrimaryAttitudeCheck" ColumnName="PrimaryAttitudeCheck" />
+                <ScalarProperty Name="PrimaryCheckDept_ID" ColumnName="PrimaryCheckDept_ID" />
+                <ScalarProperty Name="PrimaryCheckStaff_ID" ColumnName="PrimaryCheckStaff_ID" />
+                <ScalarProperty Name="PrimaryDateCheck" ColumnName="PrimaryDateCheck" />
+                <ScalarProperty Name="PrimaryAttitudeExamine" ColumnName="PrimaryAttitudeExamine" />
+                <ScalarProperty Name="PrimaryExamineDept_ID" ColumnName="PrimaryExamineDept_ID" />
+                <ScalarProperty Name="PrimaryExamineStaff_ID" ColumnName="PrimaryExamineStaff_ID" />
+                <ScalarProperty Name="PrimaryDateExamine" ColumnName="PrimaryDateExamine" />
+                <ScalarProperty Name="CommitValue" ColumnName="CommitValue" />
+                <ScalarProperty Name="IsHasten" ColumnName="IsHasten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OA_Sends">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OA_Sends">
+              <MappingFragment StoreEntitySet="OA_Sends">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OfficeSerial" ColumnName="OfficeSerial" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+                <ScalarProperty Name="AttituderName" ColumnName="AttituderName" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="CopyDepartment" ColumnName="CopyDepartment" />
+                <ScalarProperty Name="CopyNotice" ColumnName="CopyNotice" />
+                <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+                <ScalarProperty Name="PrintCount" ColumnName="PrintCount" />
+                <ScalarProperty Name="LeaderAttitude" ColumnName="LeaderAttitude" />
+                <ScalarProperty Name="LeaderStaffName" ColumnName="LeaderStaffName" />
+                <ScalarProperty Name="LeaderStaffDate" ColumnName="LeaderStaffDate" />
+                <ScalarProperty Name="SignAttitude" ColumnName="SignAttitude" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="StaffDept_ID" ColumnName="StaffDept_ID" />
+                <ScalarProperty Name="CheckStaffName" ColumnName="CheckStaffName" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IsArchives" ColumnName="IsArchives" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="OldSystemId" ColumnName="OldSystemId" />
+                <ScalarProperty Name="TemplateType_ID" ColumnName="TemplateType_ID" />
+                <ScalarProperty Name="DeptAttitude" ColumnName="DeptAttitude" />
+                <ScalarProperty Name="DeptStaffName" ColumnName="DeptStaffName" />
+                <ScalarProperty Name="DeptStaffDate" ColumnName="DeptStaffDate" />
+                <ScalarProperty Name="CollateStaffName" ColumnName="CollateStaffName" />
+                <ScalarProperty Name="PrintStaffName" ColumnName="PrintStaffName" />
+                <ScalarProperty Name="SealStaffName" ColumnName="SealStaffName" />
+                <ScalarProperty Name="ScanStaffName" ColumnName="ScanStaffName" />
+                <ScalarProperty Name="AuditorStaffName" ColumnName="AuditorStaffName" />
+                <ScalarProperty Name="CheckAttitude" ColumnName="CheckAttitude" />
+                <ScalarProperty Name="CheckDate" ColumnName="CheckDate" />
+                <ScalarProperty Name="AuditorAttitude" ColumnName="AuditorAttitude" />
+                <ScalarProperty Name="AuditorDate" ColumnName="AuditorDate" />
+                <ScalarProperty Name="RetractPrintCount" ColumnName="RetractPrintCount" />
+                <ScalarProperty Name="RetractDescription" ColumnName="RetractDescription" />
+                <ScalarProperty Name="RetractStaffId" ColumnName="RetractStaffId" />
+                <ScalarProperty Name="RetractDate" ColumnName="RetractDate" />
+                <ScalarProperty Name="RetractDeptAttitude" ColumnName="RetractDeptAttitude" />
+                <ScalarProperty Name="RetractDeptLeader" ColumnName="RetractDeptLeader" />
+                <ScalarProperty Name="RetractDeptLeaderDate" ColumnName="RetractDeptLeaderDate" />
+                <ScalarProperty Name="RetractAttitude" ColumnName="RetractAttitude" />
+                <ScalarProperty Name="RetractAttitudeName" ColumnName="RetractAttitudeName" />
+                <ScalarProperty Name="RetractAttitudeDate" ColumnName="RetractAttitudeDate" />
+                <ScalarProperty Name="RetractRemark" ColumnName="RetractRemark" />
+                <ScalarProperty Name="CollateDate" ColumnName="CollateDate" />
+                <ScalarProperty Name="DeptCheckAttitude" ColumnName="DeptCheckAttitude" />
+                <ScalarProperty Name="DeptCheckStaffName" ColumnName="DeptCheckStaffName" />
+                <ScalarProperty Name="DeptCheckStaffDate" ColumnName="DeptCheckStaffDate" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_Depts">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_Depts">
+              <MappingFragment StoreEntitySet="OG_Depts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="RootId" ColumnName="RootId" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="IsSubMain" ColumnName="IsSubMain" />
+                <ScalarProperty Name="IsLeader" ColumnName="IsLeader" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_DeptStaffs">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_DeptStaffs">
+              <MappingFragment StoreEntitySet="OG_DeptStaffs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_Roles">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_Roles">
+              <MappingFragment StoreEntitySet="OG_Roles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="IsShare" ColumnName="IsShare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_RoleStaffs">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_RoleStaffs">
+              <MappingFragment StoreEntitySet="OG_RoleStaffs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_Staffs">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_Staffs">
+              <MappingFragment StoreEntitySet="OG_Staffs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="LogName" ColumnName="LogName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Blood" ColumnName="Blood" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="HideMap" ColumnName="HideMap" />
+                <ScalarProperty Name="HideSearch" ColumnName="HideSearch" />
+                <ScalarProperty Name="Duty" ColumnName="Duty" />
+                <ScalarProperty Name="PicName" ColumnName="PicName" />
+                <ScalarProperty Name="IsPermiss" ColumnName="IsPermiss" />
+                <ScalarProperty Name="IsMaster" ColumnName="IsMaster" />
+                <ScalarProperty Name="IsSubMaster" ColumnName="IsSubMaster" />
+                <ScalarProperty Name="IsMultiSign" ColumnName="IsMultiSign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OG_Usrs">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OG_Usrs">
+              <MappingFragment StoreEntitySet="OG_Usrs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
+                <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="UserUniqueKey" ColumnName="UserUniqueKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ExpandValues">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_ExpandValues">
+              <MappingFragment StoreEntitySet="S_ExpandValues">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Processes">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_Processes">
+              <MappingFragment StoreEntitySet="S_Processes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Content2" ColumnName="Content2" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Activate" ColumnName="Activate" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="LastEditorId" ColumnName="LastEditorId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Update" ColumnName="Update" />
+                <ScalarProperty Name="StartFormId" ColumnName="StartFormId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ProcessTypeId" ColumnName="ProcessTypeId" />
+                <ScalarProperty Name="IsMustRelation" ColumnName="IsMustRelation" />
+                <ScalarProperty Name="IsOARelation" ColumnName="IsOARelation" />
+                <ScalarProperty Name="IsSimpleRelation" ColumnName="IsSimpleRelation" />
+                <ScalarProperty Name="PrivateMainDept_ID" ColumnName="PrivateMainDept_ID" />
+                <ScalarProperty Name="TimeLimitType" ColumnName="TimeLimitType" />
+                <ScalarProperty Name="TimeLimit" ColumnName="TimeLimit" />
+                <ScalarProperty Name="IsFullForm" ColumnName="IsFullForm" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="IsPermission" ColumnName="IsPermission" />
+                <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+                <ScalarProperty Name="SpecialType" ColumnName="SpecialType" />
+                <ScalarProperty Name="IsBatch" ColumnName="IsBatch" />
+                <ScalarProperty Name="RelFindField" ColumnName="RelFindField" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ProjectBases">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_ProjectBases">
+              <MappingFragment StoreEntitySet="S_ProjectBases">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ContextPerson" ColumnName="ContextPerson" />
+                <ScalarProperty Name="ContextMobile" ColumnName="ContextMobile" />
+                <ScalarProperty Name="ContextPersonalID" ColumnName="ContextPersonalID" />
+                <ScalarProperty Name="ProjectAddress" ColumnName="ProjectAddress" />
+                <ScalarProperty Name="ArtificialPerson" ColumnName="ArtificialPerson" />
+                <ScalarProperty Name="ArtificialPersonID" ColumnName="ArtificialPersonID" />
+                <ScalarProperty Name="DeputyPerson" ColumnName="DeputyPerson" />
+                <ScalarProperty Name="DeputyPersonID" ColumnName="DeputyPersonID" />
+                <ScalarProperty Name="GetAddress" ColumnName="GetAddress" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="ArchiveId" ColumnName="ArchiveId" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="DeputyPhone" ColumnName="DeputyPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ProjectItems">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_ProjectItems">
+              <MappingFragment StoreEntitySet="S_ProjectItems">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="PrevStaffId" ColumnName="PrevStaffId" />
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
+                <ScalarProperty Name="StatusValue" ColumnName="StatusValue" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CurStaffId" ColumnName="CurStaffId" />
+                <ScalarProperty Name="CurActionId" ColumnName="CurActionId" />
+                <ScalarProperty Name="PrevActionId" ColumnName="PrevActionId" />
+                <ScalarProperty Name="PrevItem_ID" ColumnName="PrevItem_ID" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Projects">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_Projects">
+              <MappingFragment StoreEntitySet="S_Projects">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusValue" ColumnName="StatusValue" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="IsUrge" ColumnName="IsUrge" />
+                <ScalarProperty Name="UrgeLimit" ColumnName="UrgeLimit" />
+                <ScalarProperty Name="UrgeMaxDate" ColumnName="UrgeMaxDate" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="DeleteRemark" ColumnName="DeleteRemark" />
+                <ScalarProperty Name="SearchPassword" ColumnName="SearchPassword" />
+                <ScalarProperty Name="PromisesDays" ColumnName="PromisesDays" />
+                <ScalarProperty Name="ExpectDate" ColumnName="ExpectDate" />
+                <ScalarProperty Name="IsHistory" ColumnName="IsHistory" />
+                <ScalarProperty Name="CreatorPhone" ColumnName="CreatorPhone" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="BuildupId" ColumnName="BuildupId" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="LockReason" ColumnName="LockReason" />
+                <ScalarProperty Name="IsRetract" ColumnName="IsRetract" />
+                <ScalarProperty Name="MeetingType" ColumnName="MeetingType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OA_Signatures">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.OA_Signatures">
+              <MappingFragment StoreEntitySet="OA_Signatures">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Receive_ID" ColumnName="Receive_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="OldSystemId" ColumnName="OldSystemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Annexs">
+            <EntityTypeMapping TypeName="NNWebDBContextModel.S_Annexs">
+              <MappingFragment StoreEntitySet="S_Annexs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Extended" ColumnName="Extended" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="SystemType" ColumnName="SystemType" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="S_Project_ID" ColumnName="S_Project_ID" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="MarkCode" ColumnName="MarkCode" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="FKTable" ColumnName="FKTable" />
+                <ScalarProperty Name="FKValue" ColumnName="FKValue" />
+                <ScalarProperty Name="HasRevision" ColumnName="HasRevision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

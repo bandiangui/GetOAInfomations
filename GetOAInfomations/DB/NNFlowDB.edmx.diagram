@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e26fb2bf3ac48cdb77aa57271dc77f1" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="NNWebDBContextModel.OA_Cooperates" Width="1.5" PointX="6.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OA_Reads" Width="1.5" PointX="9.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OA_Receives" Width="1.5" PointX="12.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OA_Sends" Width="1.5" PointX="6.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_Depts" Width="1.5" PointX="4" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_DeptStaffs" Width="1.5" PointX="6.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_Roles" Width="1.5" PointX="4" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_RoleStaffs" Width="1.5" PointX="12.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_Staffs" Width="1.5" PointX="4" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OG_Usrs" Width="1.5" PointX="1.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_ExpandValues" Width="1.5" PointX="9.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_Processes" Width="1.5" PointX="9.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_ProjectBases" Width="1.5" PointX="16.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_ProjectItems" Width="1.5" PointX="19.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_Projects" Width="1.5" PointX="14.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.OA_Signatures" Width="1.5" PointX="14.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NNWebDBContextModel.S_Annexs" Width="1.5" PointX="16.75" PointY="21.875" IsExpanded="true" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Cooperates_dbo_OG_Depts_Dept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Cooperates_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Reads_dbo_OA_Receives_Receive_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Reads_dbo_OG_Depts_Dept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Reads_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_DealDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_LeaderDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryCheckDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_PrimaryExamineDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Depts_ResultDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_DealStaff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Receives_dbo_S_Projects_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Sends_dbo_S_Projects_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Depts_dbo_OG_Depts_Parent_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Depts_dbo_OG_Usrs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_DeptStaffs_dbo_OG_Depts_Dept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ExpandValues_dbo_OG_Depts_DeptId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_OG_Depts_PrivateMainDept_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_DeptStaffs_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Roles_dbo_OG_Roles_Parent_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Roles_dbo_OG_Usrs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ProjectItems_dbo_OG_Staffs_PrevStaffId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ProjectItems_dbo_OG_Usrs_CurStaffId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Projects_dbo_OG_Usrs_CreatorId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_S_Processes_ParentId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Projects_dbo_S_Processes_ProcessId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ProjectBases_dbo_S_Projects_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ProjectItems_dbo_S_ProjectItems_PrevItem_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ProjectItems_dbo_S_Projects_ProjectId" ManuallyRouted="false" />
+        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Annexs_dbo_S_Projects_S_Project_ID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
