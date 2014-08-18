@@ -104,15 +104,12 @@
             // comboBox1
             // 
             this.comboBox1.AllowDrop = true;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "收文",
-            "发文"});
             this.comboBox1.Location = new System.Drawing.Point(46, 38);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(76, 20);
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "收文";
             // 
             // Form1
             // 

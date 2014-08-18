@@ -77,9 +77,9 @@ namespace GetOAInfomations.DB
         public virtual OG_Staffs OG_Staffs1 { get; set; }
         public virtual OG_Staffs OG_Staffs2 { get; set; }
         public virtual OG_Staffs OG_Staffs3 { get; set; }
-        public virtual OG_Staffs OG_Staffs4 { get; set; }
+        public virtual OG_Staffs PrimaryStaff { get; set; }
         public virtual OG_Staffs OG_Staffs5 { get; set; }
-        public virtual OG_Staffs OG_Staffs6 { get; set; }
+        public virtual OG_Staffs Staff { get; set; }
         public virtual S_Projects S_Projects { get; set; }
         public virtual ICollection<OA_Signatures> OA_Signatures { get; set; }
     }

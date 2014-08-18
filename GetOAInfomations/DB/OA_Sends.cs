@@ -71,9 +71,9 @@ namespace GetOAInfomations.DB
         public Nullable<System.DateTime> DeptCheckStaffDate { get; set; }
         public string Public { get; set; }
     
-        public virtual OG_Depts OG_Depts { get; set; }
-        public virtual OG_Staffs OG_Staffs { get; set; }
-        public virtual OG_Staffs OG_Staffs1 { get; set; }
+        public virtual OG_Depts Dept { get; set; }
+        public virtual OG_Staffs RetractStaff { get; set; }
+        public virtual OG_Staffs Staff { get; set; }
         public virtual S_Projects S_Projects { get; set; }
     }
 }

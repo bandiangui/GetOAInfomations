@@ -1303,9 +1303,9 @@
           <NavigationProperty Name="OG_Staffs1" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Leader_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
           <NavigationProperty Name="OG_Staffs2" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryCheckStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
           <NavigationProperty Name="OG_Staffs3" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryExamineStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
-          <NavigationProperty Name="OG_Staffs4" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="PrimaryStaff" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_PrimaryStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
           <NavigationProperty Name="OG_Staffs5" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_ResultStaff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
-          <NavigationProperty Name="OG_Staffs6" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_dbo_OA_Receives_dbo_OG_Staffs_Staff_ID" FromRole="OA_Receives" ToRole="OG_Staffs" />
           <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_OA_Receives_dbo_S_Projects_ID" FromRole="OA_Receives" ToRole="S_Projects" />
           <NavigationProperty Name="OA_Signatures" Relationship="Self.FK_dbo_OA_Signatures_dbo_OA_Receives_Receive_ID" FromRole="OA_Receives" ToRole="OA_Signatures" />
         </EntityType>
@@ -1369,9 +1369,14 @@
           <Property Name="DeptCheckStaffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DeptCheckStaffDate" Type="DateTime" Precision="3" />
           <Property Name="Public" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OG_Depts" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" FromRole="OA_Sends" ToRole="OG_Depts" />
-          <NavigationProperty Name="OG_Staffs" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" FromRole="OA_Sends" ToRole="OG_Staffs" />
-          <NavigationProperty Name="OG_Staffs1" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" FromRole="OA_Sends" ToRole="OG_Staffs" />
+          <NavigationProperty Name="Dept" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Depts_StaffDept_ID" FromRole="OA_Sends" ToRole="OG_Depts" />
+          <NavigationProperty Name="RetractStaff" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_RetractStaffId" FromRole="OA_Sends" ToRole="OG_Staffs" >
+            <Documentation>
+              <Summary>修改经办人</Summary>
+              <LongDescription>修改经办人</LongDescription>
+            </Documentation>
+          </NavigationProperty>
+          <NavigationProperty Name="Staff" Relationship="Self.FK_dbo_OA_Sends_dbo_OG_Staffs_Staff_ID" FromRole="OA_Sends" ToRole="OG_Staffs" />
           <NavigationProperty Name="S_Projects" Relationship="Self.FK_dbo_OA_Sends_dbo_S_Projects_ID" FromRole="OA_Sends" ToRole="S_Projects" />
         </EntityType>
         <EntityType Name="OG_Depts">
@@ -2105,8 +2110,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
-          <End Role="OG_Usrs" Type="Self.OG_Usrs" Multiplicity="1" />
-          <End Role="OG_Staffs" Type="Self.OG_Staffs" Multiplicity="0..1" />
+          <End Type="Self.OG_Usrs" Multiplicity="1" Role="OG_Usrs" />
+          <End Type="Self.OG_Staffs" Multiplicity="0..1" Role="OG_Staffs" />
           <ReferentialConstraint>
             <Principal Role="OG_Usrs">
               <PropertyRef Name="ID" />
@@ -2419,8 +2424,8 @@
             <End Role="OA_Signatures" EntitySet="OA_Signatures" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" Association="Self.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID">
-            <End Role="OG_Usrs" EntitySet="OG_Usrs" />
-            <End Role="OG_Staffs" EntitySet="OG_Staffs" />
+            <End EntitySet="OG_Usrs" Role="OG_Usrs" />
+            <End EntitySet="OG_Staffs" Role="OG_Staffs" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" Association="Self.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId">
             <End Role="OG_Staffs" EntitySet="OG_Staffs" />

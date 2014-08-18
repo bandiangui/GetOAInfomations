@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9e26fb2bf3ac48cdb77aa57271dc77f1" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="9e26fb2bf3ac48cdb77aa57271dc77f1" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="NNWebDBContextModel.OA_Cooperates" Width="1.5" PointX="6.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NNWebDBContextModel.OA_Reads" Width="1.5" PointX="9.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NNWebDBContextModel.OA_Receives" Width="1.5" PointX="12.25" PointY="3.25" IsExpanded="true" />
@@ -57,7 +57,7 @@
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_RoleStaffs_dbo_OG_Roles_Role_ID" ManuallyRouted="false" />
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_RoleStaffs_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OA_Signatures_dbo_OG_Staffs_Staff_ID" ManuallyRouted="false" />
-        <AssociationConnector Association="NNWebDBContextModel.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="NNWebDBContextModel.FK_dbo_OG_Staffs_dbo_OG_Usrs_ID" />
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_ExpandValues_dbo_OG_Staffs_StaffId" ManuallyRouted="false" />
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_OG_Staffs_CreatorId" ManuallyRouted="false" />
         <AssociationConnector Association="NNWebDBContextModel.FK_dbo_S_Processes_dbo_OG_Staffs_LastEditorId" ManuallyRouted="false" />
