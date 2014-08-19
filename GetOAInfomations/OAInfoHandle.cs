@@ -16,7 +16,7 @@ namespace GetOAInfomations
     {
         DBContext db;
         private string enter;
-        private const string path = @"E:\";
+        private string path;
         private string storePath;
 
         public OaInfoHandle()
@@ -24,6 +24,7 @@ namespace GetOAInfomations
             db = DB.DBFactory<UOWOffice>.GetInstance().DBContext;
             enter = ((char)10).ToString();
             storePath = ConfigurationSettings.AppSettings["OAStore"];
+            path = ConfigurationSettings.AppSettings["DestFolder"];
         }
 
         public List<OA_Receive> GetReceiveses(int beginYear, int endYear, int type)
@@ -34,7 +35,7 @@ namespace GetOAInfomations
             var receives =
                 db.OA_Receives.Get(p =>
                         p.Project.IsDeleted == false && p.GetDate > beginDate && p.GetDate < endDate &&
-                        p.Project.ProcessId == type, "Staff,PrimaryStaff").Take(100);
+                        p.Project.ProcessId == type, "Staff,PrimaryStaff");
 
             return receives.ToList();
         }
@@ -101,7 +102,7 @@ namespace GetOAInfomations
                 serialNumber = string.Format("[{0}]", beginYear);
                 sends = sends.Union(db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.SerialNumber.Contains(serialNumber), "Staff,StaffDept"));
             }
-            return sends.Take(100).ToList();
+            return sends.ToList();
         }
 
         public List<SendData> GetSends(List<OA_Send> sends)
@@ -215,7 +216,7 @@ namespace GetOAInfomations
         public string GetAnnex(AnnexItem data)
         {
             List<S_Annex> annexes = new List<S_Annex>();
-            annexes.AddRange(db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.IsDeleted == false && p.Type != 4).OrderBy(p => p.Order));
+            annexes.AddRange(GetAnnexList(data));
 
             foreach (var annex in annexes)
             {
@@ -243,7 +244,7 @@ namespace GetOAInfomations
                 }
             }
 
-            var doc = db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.Type == 4 && !p.IsDeleted).FirstOrDefault();
+            var doc = GetDocument(data);
             if (doc != null && doc.HasRevision)
             {
                 try
@@ -261,6 +262,16 @@ namespace GetOAInfomations
                 }
             }
             return null;
+        }
+
+        public List<S_Annex> GetAnnexList(AnnexItem data)
+        {
+             return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.IsDeleted == false && p.Type != 4).OrderBy(p => p.Order).ToList();
+        }
+
+        public S_Annex GetDocument(AnnexItem data)
+        {
+            return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.Type == 4 && !p.IsDeleted).FirstOrDefault();
         }
     }
 
