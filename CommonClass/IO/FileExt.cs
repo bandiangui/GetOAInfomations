@@ -64,24 +64,25 @@ namespace CommonClass.IO
         /// <param name="sourcePath">存放路径...可以是部分存储路径(storePath不能为空);完整的存储路径(storePath为空)</param>
         /// <param name="destFileName">最终全路径</param>
         /// <param name="storePath">存储名称</param>
-        public static void GetFileStoreToServer(string sourcePath, string destFileName, string storePath = null)
+        public static string GetFileStoreToServer(string sourcePath, string destFileName, string storePath = null)
         {
             bool isStorePath = IsStorePath(sourcePath);
-            if (!isStorePath && string.IsNullOrEmpty(storePath)) return;
+            if (!isStorePath && string.IsNullOrEmpty(storePath)) return string.Format("非法路径storePath:{0}", storePath);
             sourcePath = isStorePath ? sourcePath : string.Format("{0}{1}", storePath, CheckPath(sourcePath));
             try
             {
-                if (!Helper.VirtualLogOn(OaUser, OaDom, OaPwd)) return;
+                if (!Helper.VirtualLogOn(OaUser, OaDom, OaPwd)) return string.Format("模拟登录失败。");
+                if (!IsFileExist(sourcePath)) return string.Format("文件不存在{0}", sourcePath);
 
-                if (IsFileExist(sourcePath))
-                {
-                    File.Copy(sourcePath, destFileName, true);
-                }
+                File.Copy(sourcePath, destFileName, true);
+
                 Helper.VirtualLogOff();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                return ex.Message;
             }
+            return null;
         }
 
         /// <summary>

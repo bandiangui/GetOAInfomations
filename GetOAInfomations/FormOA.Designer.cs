@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GetOAInfomations.ComboxItem comboxItem4 = new GetOAInfomations.ComboxItem();
-            GetOAInfomations.ComboxItem comboxItem5 = new GetOAInfomations.ComboxItem();
-            GetOAInfomations.ComboxItem comboxItem6 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem7 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem8 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem9 = new GetOAInfomations.ComboxItem();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,15 +68,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "年份：";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(225, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "至";
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "yyyy";
@@ -88,18 +77,9 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(54, 21);
             this.dateTimePicker1.TabIndex = 5;
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(248, 36);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(61, 21);
-            this.dateTimePicker2.TabIndex = 6;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(451, 34);
+            this.button1.Location = new System.Drawing.Point(388, 36);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -111,7 +91,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Green;
-            this.label3.Location = new System.Drawing.Point(327, 42);
+            this.label3.Location = new System.Drawing.Point(245, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 12);
             this.label3.TabIndex = 8;
@@ -134,7 +114,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(550, 34);
+            this.button2.Location = new System.Drawing.Point(487, 36);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 11;
@@ -147,16 +127,16 @@
             this.comboBox1.DisplayMember = "Name";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            comboxItem4.Name = "收文";
-            comboxItem4.Valud = 1;
-            comboxItem5.Name = "发文";
-            comboxItem5.Valud = 2;
-            comboxItem6.Name = "信访";
-            comboxItem6.Valud = 212;
+            comboxItem7.Name = "收文";
+            comboxItem7.Valud = 1;
+            comboxItem8.Name = "发文";
+            comboxItem8.Valud = 2;
+            comboxItem9.Name = "信访";
+            comboxItem9.Valud = 212;
             this.comboBox1.Items.AddRange(new object[] {
-            comboxItem4,
-            comboxItem5,
-            comboxItem6});
+            comboxItem7,
+            comboxItem8,
+            comboxItem9});
             this.comboBox1.Location = new System.Drawing.Point(12, 34);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(94, 20);
@@ -165,7 +145,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(653, 34);
+            this.button3.Location = new System.Drawing.Point(590, 36);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
@@ -184,9 +164,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.comboBox1);
@@ -204,9 +182,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

@@ -27,10 +27,10 @@ namespace GetOAInfomations
             path = ConfigurationSettings.AppSettings["DestFolder"];
         }
 
-        public List<OA_Receive> GetReceiveses(int beginYear, int endYear, int type)
+        public List<OA_Receive> GetReceiveses(int beginYear, int type)
         {
             DateTime beginDate = new DateTime(beginYear, 1, 1);
-            DateTime endDate = new DateTime(endYear + 1, 1, 1);
+            DateTime endDate = new DateTime(beginYear + 1, 1, 1);
 
             var receives =
                 db.OA_Receives.Get(p =>
@@ -91,17 +91,10 @@ namespace GetOAInfomations
             return ret;
         }
 
-        public List<OA_Send> GetSends(int beginYear, int endYear)
+        public List<OA_Send> GetSends(int beginYear)
         {
             string serialNumber = string.Format("[{0}]", beginYear);
             var sends = db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.SerialNumber.Contains(serialNumber), "Staff,StaffDept");
-
-            while (beginYear != endYear)
-            {
-                beginYear++;
-                serialNumber = string.Format("[{0}]", beginYear);
-                sends = sends.Union(db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.SerialNumber.Contains(serialNumber), "Staff,StaffDept"));
-            }
             return sends.ToList();
         }
 
@@ -123,10 +116,10 @@ namespace GetOAInfomations
             return ret;
         }
 
-        public void ExcelImport(int beginYear, int endYear, int type, List<SendData> sends = null, List<ReceiveData> receiveses = null)
+        public void ExcelImport(int beginYear, int type, List<SendData> sends = null, List<ReceiveData> receiveses = null)
         {
             const string filter = "HIDDEN";
-            string title = beginYear == endYear ? beginYear + "年" : beginYear + "-" + endYear + "年";
+            string title = beginYear + "年";
             title += "收文列表";
             List<object> excelList = new List<object>();
             if (sends != null)
@@ -216,21 +209,30 @@ namespace GetOAInfomations
         public string GetAnnex(AnnexItem data)
         {
             List<S_Annex> annexes = new List<S_Annex>();
+            string ret = null;
+
             annexes.AddRange(GetAnnexList(data));
+            var doc = GetDocument(data);
+
+            if (!annexes.Any() && (doc == null || !doc.HasRevision)) return ret;
+
+            string destPath = string.Format("{0}{1}\\{2}\\", path, data.FolderName, data.Index);
+            FileExt.CheckDirectoryExist(destPath);
 
             foreach (var annex in annexes)
             {
                 try
                 {
-                    string destPath = string.Format("{0}{1}\\{2}\\", path, data.FolderName, data.Index);
-                    FileExt.CheckDirectoryExist(destPath);
-                    destPath = string.Format("{0}{1}-{2}.{3}", destPath, annex.Name, annex.Order, annex.Extended);
+                    string destFullPath = string.Format("{0}{1}-{2}.{3}", destPath, annex.Name, annex.Order, annex.Extended);
 
                     if (string.IsNullOrEmpty(annex.Url))
                     {
                         // 文件方式存储的,读取Path字段
                         string originalPath = string.Format("{0}{1}{2}.{3}", storePath, annex.Path, annex.ID, annex.Extended);
-                        FileExt.GetFileStoreToServer(originalPath, destPath);
+                        string r = FileExt.GetFileStoreToServer(originalPath, destFullPath);
+
+                        if (!string.IsNullOrEmpty(r))
+                            ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, r);
                     }
                     else
                     {
@@ -240,38 +242,35 @@ namespace GetOAInfomations
                 }
                 catch (Exception ex)
                 {
-                    return string.Format("{0}:{1}", annex.ID, ex.Message);
+                    ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, ex.Message);
                 }
             }
 
-            var doc = GetDocument(data);
-            if (doc != null && doc.HasRevision)
+            try
             {
-                try
-                {
-                    string destPath = string.Format("{0}{1}\\{2}\\", path, data.FolderName, data.Index);
-                    FileExt.CheckDirectoryExist(destPath);
-                    destPath = string.Format("{0}{1}：{2}.{3}", destPath, data.SerialNumber, doc.Name, doc.Extended);
+                string destFullPath = string.Format("{0}{1}：{2}.{3}", destPath, data.SerialNumber, doc.Name, doc.Extended);
+                string originalPath = string.Format("{0}{1}{2}_FinalVersion.{3}", storePath, doc.Path, doc.ID, doc.Extended);
 
-                    string originalPath = string.Format("{0}{1}{2}_FinalVersion.{3}", storePath, doc.Path, doc.ID, doc.Extended);
-                    FileExt.GetFileStoreToServer(originalPath, destPath);
-                }
-                catch (Exception ex)
-                {
-                    return string.Format("{0}:{1}", doc.ID, ex.Message);
-                }
+                string r = FileExt.GetFileStoreToServer(originalPath, destFullPath);
+
+                if (!string.IsNullOrEmpty(r))
+                    ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, r);
+            }
+            catch (Exception ex)
+            {
+                ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, ex.Message);
             }
             return null;
         }
 
         public List<S_Annex> GetAnnexList(AnnexItem data)
         {
-             return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.IsDeleted == false && p.Type != 4).OrderBy(p => p.Order).ToList();
+            return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.IsDeleted == false && p.Type != 4).OrderBy(p => p.Order).ToList();
         }
 
         public S_Annex GetDocument(AnnexItem data)
         {
-            return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.Type == 4 && !p.IsDeleted).FirstOrDefault();
+            return db.S_Annexs.Get(p => p.S_Project_ID == data.ID && p.Type == 4 && p.IsDeleted == false).FirstOrDefault();
         }
     }
 
