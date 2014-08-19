@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace GetOAInfomations
 {
-    public partial class Form1 : Form
+    public partial class FormOA : Form
     {
-        public Form1()
+        public FormOA()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

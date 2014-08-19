@@ -138,112 +138,111 @@ namespace GetOAInfomations
             return ret;
         }
 
-        public void ExcelImport(int beginYear, int endYear, int type)
+        public void ExcelImport(int beginYear, int endYear, int type, List<SendData> sends = null, List<ReceiveData> receiveses = null)
         {
             const string filter = "HIDDEN";
             int index = 1;
             string title = beginYear == endYear ? beginYear + "年" : beginYear + "-" + endYear + "年";
             title += "收文列表";
             List<object> excelList = new List<object>();
-            switch (type)
+            if (sends != null)
             {
-                case 2:
-                    title = title.Replace("收文列表", "发文列表");
-
+                #region 发文
+                title = title.Replace("收文列表", "发文列表");
+                excelList.Add(new
+                {
+                    Index = "序列号",
+                    ID = "ID",
+                    Title = "标题",
+                    SerialNumber = "公文文号",
+                    SignDate = "签发日期",
+                    Attituder = "签发人",
+                    Attitude = "签发意见",
+                    Department = "主送",
+                    Staff = "拟稿人",
+                    Dept = "拟稿部门",
+                    DeptStaffName = "部门审核人",
+                    SignAttitudes = "会签部门意见",
+                    CheckStaffName = "局办公室核稿人",
+                    CollateStaffName = "二校",
+                    PrintStaffName = "文印人"
+                });
+                sends.ForEach(p =>
+                {
+                    index++;
                     excelList.Add(new
                     {
-                        Index = "序列号",
-                        ID = "ID",
-                        Title = "标题",
-                        SerialNumber = "公文文号",
-                        SignDate = "签发日期",
-                        Attituder = "签发人",
-                        Attitude = "签发意见",
-                        Department = "主送",
-                        Staff = "拟稿人",
-                        Dept = "拟稿部门",
-                        DeptStaffName = "部门审核人",
-                        SignAttitudes = "会签部门意见",
-                        CheckStaffName = "局办公室核稿人",
-                        CollateStaffName = "二校",
-                        PrintStaffName = "文印人"
+                        Index = string.Format("{0:D5}", index),
+                        p.Send.ID,
+                        p.Send.Title,
+                        p.Send.SerialNumber,
+                        SignDate = p.Send.SignDate.HasValue ? p.Send.SignDate.Value.ToString("yyyyMMdd") : "",
+                        Attituder = p.Send.AttituderName,
+                        p.Send.Attitude,
+                        p.Send.Department,
+                        Staff = p.Send.Staff.OG_Usrs.Name,
+                        Dept = p.Send.Dept.OG_Usrs.Name,
+                        p.Send.DeptStaffName,
+                        SignAttitudes = string.Join("\r\n", p.CoopAttitudes),
+                        CheckStaffName = string.Format("{0} {1}", p.Send.CheckStaffName, p.Send.AuditorStaffName),
+                        p.Send.CollateStaffName,
+                        p.Send.PrintStaffName
                     });
-                    var sendQuerist = GetSends(beginYear, endYear);
-                    sendQuerist.ForEach(p =>
-                    {
-                        index++;
-                        excelList.Add(new
-                        {
-                            Index = string.Format("{0:D5}", index),
-                            p.Send.ID,
-                            p.Send.Title,
-                            p.Send.SerialNumber,
-                            SignDate = p.Send.SignDate.HasValue ? p.Send.SignDate.Value.ToString("yyyyMMdd") : "",
-                            Attituder = p.Send.AttituderName,
-                            p.Send.Attitude,
-                            p.Send.Department,
-                            Staff = p.Send.Staff.OG_Usrs.Name,
-                            Dept = p.Send.Dept.OG_Usrs.Name,
-                            p.Send.DeptStaffName,
-                            SignAttitudes = string.Join("\r\n", p.CoopAttitudes),
-                            CheckStaffName = string.Format("{0} {1}", p.Send.CheckStaffName, p.Send.AuditorStaffName),
-                            p.Send.CollateStaffName,
-                            p.Send.PrintStaffName
-                        });
-                    });
-                    break;
-                case 1:
-                default:
-                    title = title.Replace("收文列表", "信访列表");
-                    var receiveQuerist = GetReceiveses(beginYear, endYear, type);
-
-                    excelList.Add(new
-                    {
-                        Index ="序列号",
-                        ID = "ID",
-                        Title = "标题",
-                        SerialNumber = "公文文号",
-                        Department = "来文单位",
-                        Emergency = "紧急程度",
-                        DealType = "处理类型",
-                        Type = "公文类型",
-                        GetDate = "收件日期",
-                        Staff = "收件人",
-                        PrimaryAttitude = "拟办意见",
-                        PrimaryStaff = "拟办人",
-                        LeaderAttitude = "局领导批示",
-                        DealAttitude = "处理意见",
-                        CoopAttitude = "协办意见"
-                    });
-                    receiveQuerist.ForEach(p =>
-                    {
-                        index++;
-                        excelList.Add(new
-                        {
-                            Index = string.Format("{0:D5}", index),
-                            p.Receive.ID,
-                            p.Receive.Title,
-                            p.Receive.SerialNumber,
-                            p.Receive.Department,
-                            p.Receive.Emergency,
-                            p.Receive.DealType,
-                            p.Receive.Type,
-                            GetDate = p.Receive.GetDate.HasValue ? p.Receive.GetDate.Value.ToString("yyyyMMdd") : "",
-                            Staff = p.Receive.Staff.OG_Usrs.Name,
-                            p.Receive.PrimaryAttitude,
-                            PrimaryStaff = p.Receive.PrimaryStaff.OG_Usrs.Name,
-                            LeaderAttitude = string.Join("\r\n", p.LeaderAttitude),
-                            DealAttitude = string.Join("\r\n", p.DealAttitudes),
-                           CoopAttitude = string.Join("\r\n", p.CoopAttitudes),
-                        });
-                    });
-
-                    excelList.AddRange(receiveQuerist);
-                    break;
+                });
+                #endregion
             }
-            excelList.ToExcel("admin", title, filter, "");
+            else if (receiveses != null)
+            {
+                #region 收文与信访
+                if (type != 1)
+                {
+                    title = title.Replace("收文列表", "信访列表");
+                }
 
+                excelList.Add(new
+                {
+                    Index = "序列号",
+                    ID = "ID",
+                    Title = "标题",
+                    SerialNumber = "公文文号",
+                    Department = "来文单位",
+                    Emergency = "紧急程度",
+                    DealType = "处理类型",
+                    Type = "公文类型",
+                    GetDate = "收件日期",
+                    Staff = "收件人",
+                    PrimaryAttitude = "拟办意见",
+                    PrimaryStaff = "拟办人",
+                    LeaderAttitude = "局领导批示",
+                    DealAttitude = "处理意见",
+                    CoopAttitude = "协办意见"
+                });
+                receiveses.ForEach(p =>
+                {
+                    index++;
+                    excelList.Add(new
+                    {
+                        Index = string.Format("{0:D5}", index),
+                        p.Receive.ID,
+                        p.Receive.Title,
+                        p.Receive.SerialNumber,
+                        p.Receive.Department,
+                        p.Receive.Emergency,
+                        p.Receive.DealType,
+                        p.Receive.Type,
+                        GetDate = p.Receive.GetDate.HasValue ? p.Receive.GetDate.Value.ToString("yyyyMMdd") : "",
+                        Staff = p.Receive.Staff.OG_Usrs.Name,
+                        p.Receive.PrimaryAttitude,
+                        PrimaryStaff = p.Receive.PrimaryStaff.OG_Usrs.Name,
+                        LeaderAttitude = string.Join("\r\n", p.LeaderAttitude),
+                        DealAttitude = string.Join("\r\n", p.DealAttitudes),
+                        CoopAttitude = string.Join("\r\n", p.CoopAttitudes),
+                    });
+                });
+                #endregion
+            }
 
+            excelList.ToExcel("admin", title, filter, @"E:\" + title + ".xls");
         }
     }
 
@@ -258,10 +257,6 @@ namespace GetOAInfomations
         /// 科室处理意见
         /// </summary>
         public List<AttitudeData> DealAttitudes { get; set; }
-        /// <summary>
-        /// 科室处理意见
-        /// </summary>
-        public AttitudeData DealAttitude { get; set; }
 
         public List<AttitudeData> CoopAttitudes { get; set; }
 
