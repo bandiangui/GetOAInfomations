@@ -90,6 +90,7 @@ namespace GetOAInfomations
 
             WorksheetRow headRow = sheet.Table.Rows.Add();
             headRow.AutoFitHeight = false;
+            headRow.Height = 30;
             WorksheetCell headCell = headRow.Cells.Add(title);
             headCell.StyleID = "TitleStyle";
 

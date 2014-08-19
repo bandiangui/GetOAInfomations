@@ -16,7 +16,7 @@ namespace GetOAInfomations
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+            Application.Run(new FormOA());
         }
     }
 }

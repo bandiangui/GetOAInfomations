@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NNWebFlow.DBContexts.OA;
 
 namespace GetOAInfomations
 {
@@ -15,6 +16,116 @@ namespace GetOAInfomations
         public FormOA()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            this.button1.Enabled = false;
+
+            int beginYear = this.dateTimePicker1.Value.Year;
+            int endYear = this.dateTimePicker2.Value.Year;
+            int type = (this.comboBox1.SelectedItem as ComboxItem).Valud;
+
+            List<ReceiveData> receiveList = null;
+            List<SendData> sendList = null;
+            int count = 0;
+            this.label4.Text = string.Format("开始：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            Application.DoEvents();
+            var handle = new OaInfoHandle();
+            switch (type)
+            {
+                case 2:
+                    sendList = new List<SendData>();
+
+                    var sends = handle.GetSends(beginYear, endYear);
+                    count = sends.Count;
+
+                    sendList.AddRange(handle.GetSends(sends));
+                    break;
+                default:
+                    receiveList = new List<ReceiveData>();
+
+                    var receives = handle.GetReceiveses(beginYear, endYear, type);
+                    count = receives.Count;
+
+                    receiveList.AddRange(handle.GetReceiveses(receives));
+                    break;
+            }
+
+            this.label3.Text = string.Format("共{0}条数据。", count);
+            Application.DoEvents();
+
+            handle.ExcelImport(beginYear, endYear, type, sendList, receiveList);
+            this.label5.Text = string.Format("完成：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            this.button1.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.button1.Enabled = false;
+
+            int beginYear = this.dateTimePicker1.Value.Year;
+            int endYear = this.dateTimePicker2.Value.Year;
+            int type = (this.comboBox1.SelectedItem as ComboxItem).Valud;
+
+            this.progressBar1.Minimum = 0;
+            this.progressBar1.BackColor = Color.Green;
+
+            List<AnnexItem> list = new List<AnnexItem>();
+            int count = 0;
+            this.label4.Text = string.Format("开始：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            Application.DoEvents();
+            var handle = new OaInfoHandle();
+
+
+            switch (type)
+            {
+                case 2:
+                    var sendList = handle.GetSends(beginYear, endYear);
+                    count = sendList.Count;
+
+                    list.AddRange(sendList.Select(p => new AnnexItem()
+                    {
+                        Index = string.Format("{0:D8}", p.ID),
+                        ID = p.ID,
+                        Title = p.Title,
+                        SerialNumber = p.SerialNumber,
+                        FolderName = string.Format("{0}年发文附件", p.SerialNumber.Substring(p.SerialNumber.IndexOf("[") + 1, 4))
+                    }));
+                    break;
+                default:
+                    var receiveList = handle.GetReceiveses(beginYear, endYear, type);
+                    count = receiveList.Count;
+
+                    list.AddRange(receiveList.Select(p => new AnnexItem()
+                    {
+                        Index = string.Format("{0:D8}", p.ID),
+                        ID = p.ID,
+                        Title = p.Title,
+                        SerialNumber = p.SerialNumber,
+                        FolderName = string.Format("{0}年{1}附件", p.GetDate.HasValue ? p.GetDate.Value.Year : 0, type == 1 ? "收文" : "信访")
+                    }));
+                    break;
+            }
+            this.label3.Text = string.Format("共{0}条数据。", count);
+            this.progressBar1.Maximum = count;
+
+            foreach (var r in list)
+            {
+                string ret = handle.GetAnnex(r);
+                if (!string.IsNullOrEmpty(ret))
+                {
+                    this.richTextBox1.Text += string.Format("{0}{1}", System.Environment.NewLine, ret);
+                }
+                this.progressBar1.Value++;
+                Application.DoEvents();
+            }
+
+            Application.DoEvents();
+
+            this.label5.Text = string.Format("完成：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            this.button1.Enabled = true;
         }
     }
 }

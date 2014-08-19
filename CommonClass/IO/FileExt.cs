@@ -66,8 +66,9 @@ namespace CommonClass.IO
         /// <param name="storePath">存储名称</param>
         public static void GetFileStoreToServer(string sourcePath, string destFileName, string storePath = null)
         {
-            if (!IsStorePath(sourcePath) && string.IsNullOrEmpty(storePath)) return;
-            sourcePath = string.Format("{0}{1}", storePath, CheckPath(sourcePath));
+            bool isStorePath = IsStorePath(sourcePath);
+            if (!isStorePath && string.IsNullOrEmpty(storePath)) return;
+            sourcePath = isStorePath ? sourcePath : string.Format("{0}{1}", storePath, CheckPath(sourcePath));
             try
             {
                 if (!Helper.VirtualLogOn(OaUser, OaDom, OaPwd)) return;
