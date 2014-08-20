@@ -64,7 +64,7 @@ namespace GetOAInfomations
             this.button1.Enabled = true;
         }
         /// <summary>
-        /// 导附件
+        /// 导附件+数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -79,20 +79,24 @@ namespace GetOAInfomations
             this.progressBar1.BackColor = Color.Green;
 
             List<AnnexItem> list = new List<AnnexItem>();
+            List<ReceiveData> receiveList = null;
+            List<SendData> sendList = null;
+            List<int> idList = new List<int>();
             int count = 0;
             int annexCount = 0;
+
             this.label4.Text = string.Format("开始：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             Application.DoEvents();
+
             var handle = new OaInfoHandle();
-
-
             switch (type)
             {
                 case 2:
-                    var sendList = handle.GetSends(beginYear);
-                    count = sendList.Count;
+                    sendList = new List<SendData>();
+                    var sends = handle.GetSends(beginYear);
+                    count = sends.Count;
 
-                    list.AddRange(sendList.Select(p => new AnnexItem()
+                    list.AddRange(sends.Select(p => new AnnexItem()
                     {
                         Index = string.Format("{0:D8}", p.ID),
                         ID = p.ID,
@@ -100,12 +104,17 @@ namespace GetOAInfomations
                         SerialNumber = p.SerialNumber,
                         FolderName = string.Format("{0}年发文附件", p.SerialNumber.Substring(p.SerialNumber.IndexOf("[") + 1, 4))
                     }));
+
+                    sendList.AddRange(handle.GetSends(sends));
+
                     break;
                 default:
-                    var receiveList = handle.GetReceiveses(beginYear, type);
-                    count = receiveList.Count;
+                    receiveList = new List<ReceiveData>();
 
-                    list.AddRange(receiveList.Select(p => new AnnexItem()
+                    var receives = handle.GetReceiveses(beginYear, type);
+                    count = receives.Count;
+
+                    list.AddRange(receives.Select(p => new AnnexItem()
                     {
                         Index = string.Format("{0:D8}", p.ID),
                         ID = p.ID,
@@ -113,6 +122,9 @@ namespace GetOAInfomations
                         SerialNumber = p.SerialNumber,
                         FolderName = string.Format("{0}年{1}附件", p.GetDate.HasValue ? p.GetDate.Value.Year : 0, type == 1 ? "收文" : "信访")
                     }));
+
+
+                    receiveList.AddRange(handle.GetReceiveses(receives));
                     break;
             }
             this.label3.Text = string.Format("数据{0}条 / ", count);
@@ -122,9 +134,21 @@ namespace GetOAInfomations
             foreach (var r in list)
             {
                 string ret = handle.GetAnnex(r);
-                if (!string.IsNullOrEmpty(ret))
+                if (ret == "none")
+                {
+                    this.richTextBox1.Text += string.Format("{0}5  {1}({2} {3})  没有附件。", Environment.NewLine, r.ID, r.SerialNumber, r.Title);
+                    Application.DoEvents();
+
+                    if (receiveList != null) receiveList.Remove(receiveList.Find(p => p.Receive.ID == r.ID));
+                    if (sendList != null) sendList.Remove(sendList.Find(p => p.Send.ID == r.ID));
+                }
+                else if (!string.IsNullOrEmpty(ret))
                 {
                     this.richTextBox1.Text += string.Format("{0}{1}", Environment.NewLine, ret);
+                    Application.DoEvents();
+
+                    if (receiveList != null) receiveList.Remove(receiveList.Find(p => p.Receive.ID == r.ID));
+                    if (sendList != null) sendList.Remove(sendList.Find(p => p.Send.ID == r.ID));
                 }
                 else
                 {
@@ -134,14 +158,17 @@ namespace GetOAInfomations
                 Application.DoEvents();
             }
 
-            this.label3.Text += string.Format("数据{0}条 / 附件{1}条", count, annexCount);
+            this.label3.Text = string.Format("数据{0}条 / 附件{1}条", count, annexCount);
             Application.DoEvents();
+
+
+            handle.ExcelImport(beginYear, type, sendList, receiveList);
 
             this.label5.Text = string.Format("完成：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             this.button2.Enabled = true;
         }
         /// <summary>
-        /// 数据与附件的检查
+        /// 会签文
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -149,71 +176,64 @@ namespace GetOAInfomations
         {
             this.button3.Enabled = false;
 
-            int beginYear = this.dateTimePicker1.Value.Year;
-            int type = (this.comboBox1.SelectedItem as ComboxItem).Valud;
+            this.progressBar1.Minimum = 0;
+            this.progressBar1.BackColor = Color.Green;
+
+            List<AnnexItem> list = new List<AnnexItem>();
+            List<SendData> sendList = null;
+            List<int> idList = new List<int>();
+            int count = 0;
+            int annexCount = 0;
 
             this.label4.Text = string.Format("开始：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             Application.DoEvents();
 
-            List<AnnexItem> list = new List<AnnexItem>();
             var handle = new OaInfoHandle();
-            int count = 0;
-            int annexCount = 0;
-            List<string> exList = new List<string>();
+            sendList = new List<SendData>();
+            var sends = handle.GetSendLHFW();
+            count = sends.Count;
 
-            switch (type)
+            list.AddRange(sends.Select(p => new AnnexItem()
             {
-                case 2:
-                    var sendList = handle.GetSends(beginYear);
+                Index = string.Format("{0:D8}", p.ID),
+                ID = p.ID,
+                Title = p.Title,
+                SerialNumber = p.SerialNumber,
+                FolderName = "会签发文附件"
+            }));
 
-                    list.AddRange(sendList.Select(p => new AnnexItem()
-                    {
-                        Index = string.Format("{0:D8}", p.ID),
-                        ID = p.ID,
-                        Title = p.Title,
-                        SerialNumber = p.SerialNumber,
-                        FolderName = string.Format("{0}年发文附件", p.SerialNumber.Substring(p.SerialNumber.IndexOf("[") + 1, 4))
-                    }));
-                    break;
-                default:
-                    var receiveList = handle.GetReceiveses(beginYear, type);
+            sendList.AddRange(handle.GetSends(sends));
 
-                    list.AddRange(receiveList.Select(p => new AnnexItem()
-                    {
-                        Index = string.Format("{0:D8}", p.ID),
-                        ID = p.ID,
-                        Title = p.Title,
-                        SerialNumber = p.SerialNumber,
-                        FolderName = string.Format("{0}年{1}附件", p.GetDate.HasValue ? p.GetDate.Value.Year : 0, type == 1 ? "收文" : "信访")
-                    }));
-                    break;
-            }
-            count = list.Count;
-            this.richTextBox1.Text = string.Format("公文条目：{0}", count);
-            Application.DoEvents();
+            this.label3.Text = string.Format("数据{0}条 / ", count);
+            this.progressBar1.Maximum = count;
+
 
             foreach (var r in list)
             {
-                var aList = handle.GetAnnexList(r).Any();
-                var doc = handle.GetDocument(r);
-
-                if (aList || doc != null)
+                string ret = handle.GetAnnex(r);
+                if (ret == "none")
+                {
+                    this.richTextBox1.Text += string.Format("{0}5  {1}({2} {3})  没有附件。", Environment.NewLine, r.ID, r.SerialNumber, r.Title);
+                    Application.DoEvents();
+                }
+                else if (!string.IsNullOrEmpty(ret))
+                {
+                    this.richTextBox1.Text += string.Format("{0}{1}", Environment.NewLine, ret);
+                    Application.DoEvents();
+                }
+                else
                 {
                     annexCount++;
                 }
-
-                if (!aList && doc == null)
-                {
-                    exList.Add(string.Format("{0} {1} {2}", r.ID, r.SerialNumber, r.Title));
-                }
+                this.progressBar1.Value++;
+                Application.DoEvents();
             }
 
-            this.richTextBox1.Text += string.Format("           附件条目：{0}", annexCount);
+            this.label3.Text = string.Format("数据{0}条 / 附件{1}条", count, annexCount);
             Application.DoEvents();
 
-            this.richTextBox1.Text += string.Format("{0}没有附件的公文：{1}", Environment.NewLine, annexCount);
-            this.richTextBox1.Text += string.Format("{0}{1}", Environment.NewLine, string.Join(Environment.NewLine, exList));
-            Application.DoEvents();
+
+            handle.ExcelImport(DateTime.Now.Year, 2, sendList, null);
 
             this.label5.Text = string.Format("完成：{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             this.button3.Enabled = true;

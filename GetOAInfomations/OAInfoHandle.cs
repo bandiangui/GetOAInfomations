@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -34,8 +35,7 @@ namespace GetOAInfomations
 
             var receives =
                 db.OA_Receives.Get(p =>
-                        p.Project.IsDeleted == false && p.GetDate > beginDate && p.GetDate < endDate &&
-                        p.Project.ProcessId == type, "Staff,PrimaryStaff");
+                        p.Project.IsDeleted == false && p.GetDate > beginDate && p.GetDate < endDate && p.Project.ProcessId == type && !p.Project.Process.PrivateMainDept_ID.HasValue, "Staff,PrimaryStaff");
 
             return receives.ToList();
         }
@@ -46,55 +46,72 @@ namespace GetOAInfomations
 
             foreach (var r in receives)
             {
-                var item = new ReceiveData() { Receive = r };
-                item.LeaderAttitude.AddRange(db.OA_Signatures.Get(p => p.Receive_ID == r.ID && p.IsRead == true, "Staff")
-                    .ToList()
-                    .Select(
-                        p =>
-                            string.Format("{0}[{1}]：{2}", p.Staff.Name,
-                                p.Time.HasValue ? p.Time.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
-
-                item.DealAttitudes.AddRange(db.S_ExpandValues.Get(
-                    p => p.TableName == "OA_Receives" && p.KeyId == r.ID && p.FieldName == "DealAttitude", "Staff,Dept")
-                    .ToList()
-                    .Select(
-                        p =>
-                            string.Format("{0} {1}[{2}]：{3}", p.Dept.Name, p.Staff.Name,
-                                p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
-
-                db.OA_Cooperates.Get(p => p.Project_ID == r.ID && p.IsDeleted == false && p.IsRead == true, "Dept")
-                    .ToList().ForEach(p =>
-                    {
-                        if (item.CoopAttitudes.All(s => s.StartsWith(p.Dept.Name)))
-                        {
-                            if (string.IsNullOrEmpty(p.Content))
-                            {
-                                item.CoopAttitudes.AddRange(db.S_ExpandValues.Get(
-                                    s =>
-                                        s.TableName == "OA_Receives" && s.FieldName == "CoopAttitude" && s.KeyId == r.ID &&
-                                        s.DeptId == p.Dept_ID, "Staff,Dept")
-                                    .ToList()
-                                    .Select(
-                                        s =>
-                                            string.Format("{0} {1}[{2}]：{3}", s.Dept.Name, s.Staff.Name,
-                                                s.EndTime.HasValue ? s.EndTime.Value.ToString("yyyy年MM月dd日") : "", s.Content)));
-                            }
-                            else
-                            {
-                                item.CoopAttitudes.Add(string.Format("{0}[{1}]：{2}", p.Dept.Name,
-                                    p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content));
-                            }
-                        }
-                    });
-                ret.Add(item);
+                ret.Add(GetReceiveData(r));
             }
             return ret;
+        }
+
+        public List<ReceiveData> GetReceiveses(List<int> rIds)
+        {
+            List<ReceiveData> ret = new List<ReceiveData>();
+
+            foreach (var id in rIds)
+            {
+                var r = db.OA_Receives.Get(p => p.ID == id, "Staff,PrimaryStaff").FirstOrDefault();
+                ret.Add(GetReceiveData(r));
+            }
+            return ret;
+        }
+
+        private ReceiveData GetReceiveData(OA_Receive receive)
+        {
+            var item = new ReceiveData() { Receive = receive };
+            item.LeaderAttitude.AddRange(db.OA_Signatures.Get(p => p.Receive_ID == receive.ID && p.IsRead == true, "Staff")
+                .ToList()
+                .Select(
+                    p =>
+                        string.Format("{0}[{1}]：{2}", p.Staff.Name,
+                            p.Time.HasValue ? p.Time.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
+
+            item.DealAttitudes.AddRange(db.S_ExpandValues.Get(
+                p => p.TableName == "OA_Receives" && p.KeyId == receive.ID && p.FieldName == "DealAttitude", "Staff,Dept")
+                .ToList()
+                .Select(
+                    p =>
+                        string.Format("{0} {1}[{2}]：{3}", p.Dept.Name, p.Staff.Name,
+                            p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
+
+            db.OA_Cooperates.Get(p => p.Project_ID == receive.ID && p.IsDeleted == false && p.IsRead == true, "Dept")
+                .ToList().ForEach(p =>
+                {
+                    if (item.CoopAttitudes.All(s => s.StartsWith(p.Dept.Name)))
+                    {
+                        if (string.IsNullOrEmpty(p.Content))
+                        {
+                            item.CoopAttitudes.AddRange(db.S_ExpandValues.Get(
+                                s =>
+                                    s.TableName == "OA_Receives" && s.FieldName == "CoopAttitude" && s.KeyId == receive.ID &&
+                                    s.DeptId == p.Dept_ID, "Staff,Dept")
+                                .ToList()
+                                .Select(
+                                    s =>
+                                        string.Format("{0} {1}[{2}]：{3}", s.Dept.Name, s.Staff.Name,
+                                            s.EndTime.HasValue ? s.EndTime.Value.ToString("yyyy年MM月dd日") : "", s.Content)));
+                        }
+                        else
+                        {
+                            item.CoopAttitudes.Add(string.Format("{0}[{1}]：{2}", p.Dept.Name,
+                                p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content));
+                        }
+                    }
+                });
+            return item;
         }
 
         public List<OA_Send> GetSends(int beginYear)
         {
             string serialNumber = string.Format("[{0}]", beginYear);
-            var sends = db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.SerialNumber.Contains(serialNumber), "Staff,StaffDept");
+            var sends = db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.SerialNumber.Contains(serialNumber) && !p.Project.Process.PrivateMainDept_ID.HasValue, "Staff,StaffDept");
             return sends.ToList();
         }
 
@@ -103,17 +120,39 @@ namespace GetOAInfomations
             List<SendData> ret = new List<SendData>();
             foreach (var s in sends.OrderBy(p => p.ID))
             {
-                var item = new SendData() { Send = s };
-                item.CoopAttitudes.AddRange(db.S_ExpandValues.Get(
-                    p => p.TableName == "OA_Sends" && p.KeyId == s.ID && p.FieldName == "SignAttitude", "Staff,Dept")
-                    .ToList()
-                    .Select(
-                        p =>
-                            string.Format("{0} {1}[{2}]：{3}", p.Dept.Name, p.Staff.Name,
-                                p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
-                ret.Add(item);
+                ret.Add(GetSendData(s));
             }
             return ret;
+        }
+
+        public List<SendData> GetSends(List<int> sIds)
+        {
+            List<SendData> ret = new List<SendData>();
+            foreach (var id in sIds)
+            {
+                var send = db.OA_Sends.Get(p => p.ID == id, "Staff,StaffDept").FirstOrDefault();
+                ret.Add(GetSendData(send));
+            }
+            return ret;
+        }
+
+        public List<OA_Send> GetSendLHFW()
+        {
+            var sends = db.OA_Sends.Get(p => p.Project.IsDeleted == false && p.Type == "会签文" && !p.Project.Process.PrivateMainDept_ID.HasValue, "Staff,StaffDept");
+            return sends.ToList();
+        }
+
+        private SendData GetSendData(OA_Send send)
+        {
+            var item = new SendData() { Send = send };
+            item.CoopAttitudes.AddRange(db.S_ExpandValues.Get(
+                p => p.TableName == "OA_Sends" && p.KeyId == send.ID && p.FieldName == "SignAttitude", "Staff,Dept")
+                .ToList()
+                .Select(
+                    p =>
+                        string.Format("{0} {1}[{2}]：{3}", p.Dept.Name, p.Staff.Name,
+                            p.EndTime.HasValue ? p.EndTime.Value.ToString("yyyy年MM月dd日") : "", p.Content)));
+            return item;
         }
 
         public void ExcelImport(int beginYear, int type, List<SendData> sends = null, List<ReceiveData> receiveses = null)
@@ -145,7 +184,7 @@ namespace GetOAInfomations
                 });
                 sends.ForEach(p => excelList.Add(new
                 {
-                    ID = string.Format("{0:D5}", p.Send.ID),
+                    ID = string.Format("{0:D8}", p.Send.ID),
                     p.Send.Title,
                     p.Send.SerialNumber,
                     SignDate = p.Send.SignDate.HasValue ? p.Send.SignDate.Value.ToString("yyyy年MM月dd日") : "",
@@ -187,7 +226,7 @@ namespace GetOAInfomations
                 });
                 receiveses.ForEach(p => excelList.Add(new
                 {
-                    ID = string.Format("{0:D5}", p.Receive.ID),
+                    ID = string.Format("{0:D8}", p.Receive.ID),
                     p.Receive.Title,
                     p.Receive.SerialNumber,
                     p.Receive.Department,
@@ -214,7 +253,7 @@ namespace GetOAInfomations
             annexes.AddRange(GetAnnexList(data));
             var doc = GetDocument(data);
 
-            if (!annexes.Any() && (doc == null || !doc.HasRevision)) return ret;
+            if (!annexes.Any() && (doc == null || !doc.HasRevision)) return "none";
 
             string destPath = string.Format("{0}{1}\\{2}\\", path, data.FolderName, data.Index);
             FileExt.CheckDirectoryExist(destPath);
@@ -223,7 +262,7 @@ namespace GetOAInfomations
             {
                 try
                 {
-                    string destFullPath = string.Format("{0}{1}-{2}.{3}", destPath, annex.Name, annex.Order, annex.Extended);
+                    string destFullPath = string.Format("{0}{1}-{2}.{3}", destPath, annex.Name.FileNameFilter(), annex.Order, annex.Extended);
 
                     if (string.IsNullOrEmpty(annex.Url))
                     {
@@ -232,7 +271,7 @@ namespace GetOAInfomations
                         string r = FileExt.GetFileStoreToServer(originalPath, destFullPath);
 
                         if (!string.IsNullOrEmpty(r))
-                            ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, r);
+                            ret += string.Format("1  {4}{0}({1}{2})：{3} ({5})", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, r);
                     }
                     else
                     {
@@ -242,25 +281,27 @@ namespace GetOAInfomations
                 }
                 catch (Exception ex)
                 {
-                    ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, ex.Message);
+                    ret += string.Format("2  {4}{0}({1}{2})：{3} ({5})", data.ID, data.SerialNumber, data.Title, annex.ID, Environment.NewLine, ex.Message);
                 }
             }
 
+            if (doc == null || !doc.HasRevision) return ret;
+
             try
             {
-                string destFullPath = string.Format("{0}{1}：{2}.{3}", destPath, data.SerialNumber, doc.Name, doc.Extended);
+                string destFullPath = string.Format("{0}{1}：{2}.{3}", destPath, data.SerialNumber, doc.Name.FileNameFilter(), doc.Extended);
                 string originalPath = string.Format("{0}{1}{2}_FinalVersion.{3}", storePath, doc.Path, doc.ID, doc.Extended);
 
                 string r = FileExt.GetFileStoreToServer(originalPath, destFullPath);
 
                 if (!string.IsNullOrEmpty(r))
-                    ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, r);
+                    ret += string.Format("3  {4}{0}({1}{2})：{3} ({5})", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, r);
             }
             catch (Exception ex)
             {
-                ret += string.Format("{4}{0}({1}{2})：{3}{4}{5}", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, ex.Message);
+                ret += string.Format("4  {4}{0}({1}{2})：{3} ({5})", data.ID, data.SerialNumber, data.Title, doc.ID, Environment.NewLine, ex.Message);
             }
-            return null;
+            return ret;
         }
 
         public List<S_Annex> GetAnnexList(AnnexItem data)

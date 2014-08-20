@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using GetOAInfomations;
 
 namespace CommonClass.IO
@@ -217,6 +218,12 @@ namespace CommonClass.IO
             // 规范化存储地址: xxx\xxx\
             string newPath = path.StartsWith(@"\") ? path.Substring(1) : path;
             return newPath;
+        }
+
+        public static string FileNameFilter(this string fileName)
+        {
+            Regex r = new Regex("[\\\\/:*?\"<>	|\\r\\n]");
+            return string.IsNullOrEmpty(fileName) ? fileName : r.Replace(fileName, "").Replace(Environment.NewLine, "");
         }
 
         #endregion

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GetOAInfomations.ComboxItem comboxItem7 = new GetOAInfomations.ComboxItem();
-            GetOAInfomations.ComboxItem comboxItem8 = new GetOAInfomations.ComboxItem();
-            GetOAInfomations.ComboxItem comboxItem9 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem1 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem2 = new GetOAInfomations.ComboxItem();
+            GetOAInfomations.ComboxItem comboxItem3 = new GetOAInfomations.ComboxItem();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
@@ -127,16 +127,16 @@
             this.comboBox1.DisplayMember = "Name";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            comboxItem7.Name = "收文";
-            comboxItem7.Valud = 1;
-            comboxItem8.Name = "发文";
-            comboxItem8.Valud = 2;
-            comboxItem9.Name = "信访";
-            comboxItem9.Valud = 212;
+            comboxItem1.Name = "收文";
+            comboxItem1.Valud = 1;
+            comboxItem2.Name = "发文";
+            comboxItem2.Valud = 2;
+            comboxItem3.Name = "信访";
+            comboxItem3.Valud = 212;
             this.comboBox1.Items.AddRange(new object[] {
-            comboxItem7,
-            comboxItem8,
-            comboxItem9});
+            comboxItem1,
+            comboxItem2,
+            comboxItem3});
             this.comboBox1.Location = new System.Drawing.Point(12, 34);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(94, 20);
@@ -149,7 +149,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
-            this.button3.Text = "检查";
+            this.button3.Text = "会签文";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
